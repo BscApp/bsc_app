@@ -1,4 +1,3 @@
-
 import 'package:bsc_app/ai/ui/pages/ai_page.dart';
 
 import 'package:bsc_app/features/Map/logic/models/position.dart';
@@ -39,8 +38,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: (){
-        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChatPage()));
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => ChatPage()));
       }),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40.0), // set the height here
@@ -48,9 +48,10 @@ class _HomePageState extends State<HomePage> {
             title: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(
-              Icons.location_on,
-              color: Colors.grey,
+            Image.asset(
+              'assets/icons/location.png',
+              height: 22,
+              width: 18,
             ),
             FutureBuilder<position>(
               future: p.cityLoaded ? Future.value(p) : _getCityName(),
@@ -63,10 +64,10 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.grey, strokeWidth: 2),
                   );
                 } else if (snapshot.hasError) {
-                  return Text('check your network',
+                  return Text(' check your network',
                       style: TextStyle(color: Colors.red));
                 } else {
-                  return Text('Boumerdes,${snapshot.data?.cityName}',
+                  return Text(' Boumerdes,${snapshot.data?.cityName}',
                       style: TextStyle(color: Colors.grey));
                 }
               },
@@ -106,12 +107,35 @@ class _HomePageState extends State<HomePage> {
             selectedItemColor: Colors.white,
             unselectedItemColor: Colors.grey,
 
-            items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-              BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+            items: [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.access_alarm_sharp), label: ''),
-              BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
+                  icon: Image.asset(
+                    'assets/icons/home.png',
+                    height: 23,
+                    width: 23,
+                  ),
+                  label: ''),
+              BottomNavigationBarItem(
+                  icon: Image.asset(
+                    'assets/icons/profile.png',
+                    height: 23,
+                    width: 23,
+                  ),
+                  label: ''),
+              BottomNavigationBarItem(
+                  icon: Image.asset(
+                    'assets/icons/map.png',
+                    height: 23,
+                    width: 23,
+                  ),
+                  label: ''),
+              BottomNavigationBarItem(
+                  icon: Image.asset(
+                    'assets/icons/settings.png',
+                    height: 23,
+                    width: 23,
+                  ),
+                  label: ''),
             ],
           ),
         ),
