@@ -1,5 +1,9 @@
+
+import 'package:bsc_app/ai/ui/pages/ai_page.dart';
+
 import 'package:bsc_app/features/Map/logic/models/position.dart';
 import 'package:bsc_app/features/Map/pages/map.dart';
+
 import 'package:bsc_app/features/Servises/pages/acount_manegment.dart';
 import 'package:bsc_app/features/Servises/pages/home.dart';
 import 'package:bsc_app/features/Servises/pages/profile.dart';
@@ -35,6 +39,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChatPage()));
+      }),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40.0), // set the height here
         child: AppBar(
