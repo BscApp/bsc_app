@@ -5,6 +5,13 @@ class Dioservices {
 
     BaseOptions(
       baseUrl: 'http://10.0.2.2:5001',
-      )
+      headers: {
+        'Authorization': '5', // Example for token-based auth
+      },
+      ),
+    
   );
+
+  
+  
 }

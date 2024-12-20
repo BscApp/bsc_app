@@ -3,11 +3,19 @@ import 'package:bsc_app/ai/ui/pages/ai_page.dart';
 import 'package:bsc_app/features/Map/logic/models/position.dart';
 import 'package:bsc_app/features/Map/pages/map.dart';
 import 'package:bsc_app/features/Servises/logic/meteo.dart';
+import 'package:bsc_app/features/Servises/logic/nav.dart';
 
 import 'package:bsc_app/features/Servises/pages/acount_manegment.dart';
 import 'package:bsc_app/features/Servises/pages/home.dart';
 import 'package:bsc_app/features/Servises/pages/profile.dart';
+import 'package:bsc_app/hebergement/ui/bloc/heberge_bloc.dart';
+import 'package:bsc_app/hebergement/ui/bloc/heberge_event.dart';
+import 'package:bsc_app/main.dart';
 import 'package:flutter/material.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 
 
 class HomePage extends StatefulWidget {
@@ -45,9 +53,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ChatPage()));
+      floatingActionButton: FloatingActionButton(onPressed: () { 
+        context.read<HebergeBloc>().add(HebergesEventFetch());
       }),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40.0), // set the height here
@@ -96,7 +103,7 @@ class _HomePageState extends State<HomePage> {
           ],
         )),
       ),
-      body: pages[current],
+      body: pages[context.watch<state>().current],
       bottomNavigationBar: Container(
         margin: EdgeInsets.only(
             bottom: 20, left: 20, right: 20), // Add margin to the bottom
@@ -118,9 +125,8 @@ class _HomePageState extends State<HomePage> {
           child: BottomNavigationBar(
             showSelectedLabels: false,
             showUnselectedLabels: false,
-
-            currentIndex: current,
-            onTap: (value) => setState(() => current = value),
+            currentIndex: context.watch<state>().current,
+            onTap: (value) => setState(() => context.read<state>().changestate(value)),
             backgroundColor: Color(
                 0xFF1C1B45),
             elevation: 0,
