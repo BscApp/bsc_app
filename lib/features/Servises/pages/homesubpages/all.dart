@@ -119,19 +119,39 @@ class _All_pageState extends State<All_page> {
           ),
           SizedBox(height: 10),
           Container(
-            height: 167,
+            height: 200,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: 10,
               itemBuilder: (context, index) {
                 return Container(
-                  width: 166,
+                  width: 200,
+                  height: 200,
                   margin: EdgeInsets.symmetric(horizontal: 5),
                   decoration: BoxDecoration(
                     color: Color(0xFFD9D9D9),
                     borderRadius: BorderRadius.circular(28),
                   ),
-                  child: Center(child: Text('Picture ${index + 1}')),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 18.0),
+                    child: Column(
+                      children: [
+                        Container(
+                       
+                          height: 100,
+                          width: 170,
+                          decoration: BoxDecoration(
+                            color: Colors.amberAccent,
+                            borderRadius: BorderRadius.circular(20)
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Text('The name of the place'),
+                        SizedBox(height: 2,),
+                        Text('Type: Camp'),
+                      ],
+                    ),
+                  ),
                 );
               },
             ),
@@ -142,7 +162,7 @@ class _All_pageState extends State<All_page> {
             alignment: Alignment.centerLeft,
             child: Row(
               children: [
-                Text('Luie touristique'),
+                Text('Lieux touristique'),
                 Spacer(),
                 GestureDetector(
                   onTap: () {
@@ -157,23 +177,42 @@ class _All_pageState extends State<All_page> {
           ),
           SizedBox(height: 10),
           Container(
-            height: 167,
+            height: 200,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: 10,
               itemBuilder: (context, index) {
                 return Container(
-                  width: 166,
+                  width: 200,
+                  height: 150,
                   margin: EdgeInsets.symmetric(horizontal: 5),
                   decoration: BoxDecoration(
                     color: Color(0xFFD9D9D9),
                     borderRadius: BorderRadius.circular(28),
                   ),
-                  child: Center(child: Text('Picture ${index + 1}')),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 18.0),
+                    child: Column(
+                      children: [
+                        Container(
+                       
+                          height: 100,
+                          width: 170,
+                          decoration: BoxDecoration(
+                            color: Colors.amberAccent,
+                            borderRadius: BorderRadius.circular(20)
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Text('The name of the place')
+                      ],
+                    ),
+                  ),
                 );
               },
             ),
           ),
+          SizedBox(height: 10,)
         ],
       ),
     );
