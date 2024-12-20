@@ -12,19 +12,19 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+  late TabController tabController;
 
   @override
   void initState() {
     super.initState();
 
-    _tabController = TabController(length: 5, vsync: this);
+    tabController = TabController(length: 5, vsync: this);
 
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
+    tabController.dispose();
     super.dispose();
   }
 
@@ -49,7 +49,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         TabBar(
           tabAlignment: TabAlignment.center,
           dividerColor: Colors.transparent,
-          controller: _tabController,
+          controller: tabController,
           isScrollable: true,
           labelPadding:
               EdgeInsets.symmetric(horizontal: 8.0), // Reduced spacing
@@ -73,13 +73,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         ),
         Expanded(
           child: TabBarView(
-            controller: _tabController,
+            controller: tabController,
             children: [
-              All_page(),
+              All_page(tabController: tabController,),
               Services(),
               Hebergement(),
               Transport(),
-              All_page(),
+              All_page(tabController: tabController,),
             ],
           ),
         ),

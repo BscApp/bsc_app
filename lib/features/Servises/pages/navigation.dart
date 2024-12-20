@@ -14,12 +14,12 @@ class _HomePageState extends State<HomePage> {
     ProfilePage(username: 'islam', id: 'nkjb'),
     AccManegment(username: 'islam'),
   ];
-  late int _current;
+  late int current;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _current = 0;
+    current = 0;
   }
 
   @override
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
           )
         ),
       ),
-      body: pages[_current],
+      body: pages[current],
       bottomNavigationBar: Container(
         margin: EdgeInsets.only(
             bottom: 20, left: 20, right: 20), // Add margin to the bottom
@@ -62,8 +62,8 @@ class _HomePageState extends State<HomePage> {
             showSelectedLabels: false,
             showUnselectedLabels: false,
 
-            currentIndex: _current,
-            onTap: (value) => setState(() => _current = value),
+            currentIndex: current,
+            onTap: (value) => setState(() => current = value),
             backgroundColor: Color(
                 0xFF1C1B45), // Dark background color for the BottomNavigationBar
             elevation: 0,
