@@ -2,6 +2,7 @@ import 'package:bsc_app/ai/ui/pages/ai_page.dart';
 
 import 'package:bsc_app/features/Map/logic/models/position.dart';
 import 'package:bsc_app/features/Map/pages/map.dart';
+import 'package:bsc_app/features/Servises/logic/meteo.dart';
 
 import 'package:bsc_app/features/Servises/pages/acount_manegment.dart';
 import 'package:bsc_app/features/Servises/pages/home.dart';
@@ -21,12 +22,17 @@ class _HomePageState extends State<HomePage> {
     AccManegment(username: 'islam'),
   ];
   late int current;
+  var temporare;
   @override
+  void didChangeDependencies() async{
+    super.didChangeDependencies();
+    temporare= await MeteoService().fetchWeather();
+  }
   void initState() {
-    // TODO: implement initState
     super.initState();
     current = 0;
   }
+  
 
   position p = position();
   Future<position> _getCityName() async {
@@ -72,6 +78,20 @@ class _HomePageState extends State<HomePage> {
                 }
               },
             ),
+            Spacer(),
+            if (temporare==null)
+            FutureBuilder(future:MeteoService().fetchWeather(), builder:(context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Text('');
+                } else if (snapshot.hasError) {
+                  return Text('');
+                } else {
+                  return Text('${snapshot.data.toString()}°',
+                      style: TextStyle(color: Colors.grey));
+                }
+            },),
+            if (temporare!=null)
+            Text('${temporare.toString()}°', style: TextStyle(color: Colors.grey))
           ],
         )),
       ),
