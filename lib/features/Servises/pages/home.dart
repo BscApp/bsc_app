@@ -1,56 +1,65 @@
-import 'package:bsc_app/features/Servises/pages/homesubpages/all.dart';
-import 'package:bsc_app/features/Servises/pages/homesubpages/hebergement.dart';
-import 'package:bsc_app/features/Servises/pages/homesubpages/lieu_touristique.dart';
-import 'package:bsc_app/features/Servises/pages/homesubpages/transport.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
   @override
-  State<Home> createState() => _HomeState();
+  _HomeState createState() => _HomeState();
 }
 
-TabController? _tabController;
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
 
-class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextField(
-          decoration: InputDecoration(
-            fillColor: Color(0xFFF2F2F2),
-            filled: true,
-            hintText: ' Search',
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(25.0),
-              borderSide: BorderSide.none,
-            ),
-          ),
-        ),
-        TabBar(tabs: [
-          Tab(
-            text: 'All',
-          ),
-          Tab(
-            text: 'Hebergement',
-          ),
-          Tab(
-            text: 'Transport',
-          ),
-          Tab(
-            text: 'Lieux Touristiques',
-          ),
-        ]),
-        TabBarView(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
+        bottom: TabBar(
           controller: _tabController,
-          children: [
-            All_page(),
-            Hebergement(),
-            Transport(),
-            LieuxTouristique(),
+          tabs: [
+            Tab(icon: Icon(Icons.home), text: 'Home'),
+            Tab(icon: Icon(Icons.search), text: 'Search'),
+            Tab(icon: Icon(Icons.person), text: 'Profile'),
           ],
         ),
-      ],
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Search...',
+                prefixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                Center(child: Text('Home Tab')),
+                Center(child: Text('Search Tab')),
+                Center(child: Text('Profile Tab')),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
