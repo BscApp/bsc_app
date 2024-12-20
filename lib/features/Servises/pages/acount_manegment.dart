@@ -12,11 +12,13 @@ class _AccManegmentState extends State<AccManegment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40.0), // set the height here
         child: AppBar(
-          title: Text('Your Account'),
+          title: Text(
+            'Your Account',
+            style: TextStyle(color: Colors.grey, fontSize: 20),
+          ),
         ),
       ),
       body: Column(
@@ -35,13 +37,13 @@ class _AccManegmentState extends State<AccManegment> {
               },
             ),
           ),
-          SizedBox(height: 41),
+          SizedBox(height: 25),
           Container(
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.fromLTRB(27, 0, 0, 0),
             child: Text(
               'Info and support',
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(color: Colors.grey, fontSize: 20),
             ),
           ),
           SizedBox(height: 10),
@@ -70,13 +72,13 @@ class _AccManegmentState extends State<AccManegment> {
               ],
             ),
           ),
-          SizedBox(height: 31),
+          SizedBox(height: 25),
           Container(
             padding: EdgeInsets.fromLTRB(27, 0, 0, 0),
             alignment: Alignment.centerLeft,
             child: Text(
               'login',
-              style: TextStyle(color: Colors.grey[500]),
+              style: TextStyle(color: Colors.grey[500], fontSize: 20),
             ),
           ),
           SizedBox(height: 10),
@@ -90,7 +92,9 @@ class _AccManegmentState extends State<AccManegment> {
               children: [
                 ListTile(
                   trailing: Icon(Icons.arrow_forward_ios),
-                  title: Text('Logout',),
+                  title: Text(
+                    'Logout',
+                  ),
                   onTap: () {
                     Navigator.pushNamed(context, '/Logout');
                   },
