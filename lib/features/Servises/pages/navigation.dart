@@ -8,7 +8,7 @@ import 'package:bsc_app/features/Servises/pages/acount_manegment.dart';
 import 'package:bsc_app/features/Servises/pages/home.dart';
 import 'package:bsc_app/features/Servises/pages/profile.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -122,7 +122,7 @@ class _HomePageState extends State<HomePage> {
             currentIndex: current,
             onTap: (value) => setState(() => current = value),
             backgroundColor: Color(
-                0xFF1C1B45), // Dark background color for the BottomNavigationBar
+                0xFF1C1B45),
             elevation: 0,
             type: BottomNavigationBarType.fixed,
             selectedItemColor: Colors.white,
