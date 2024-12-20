@@ -34,10 +34,15 @@ class _TransportState extends State<Transport> {
                   color: Color(0xFFD9D9D9),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: ListTile(
-                  trailing: Icon(Icons.arrow_forward_ios),
-                  title: Text(trains[index],
-                      style: TextStyle(fontSize: 16, color: Colors.grey[800])),
+                child: GestureDetector(
+                  onTap:  (){
+                    showModalBottomSheet(context: context, builder:(BuildContext context)=>StopsList(),isScrollControlled: true);
+                  },
+                  child: ListTile(
+                    trailing: Icon(Icons.arrow_forward_ios),
+                    title: Text(trains[index],
+                        style: TextStyle(fontSize: 16, color: Colors.grey[800])),
+                  ),
                 ),
               );
             },
