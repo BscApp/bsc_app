@@ -9,7 +9,7 @@ class All_page extends StatefulWidget {
   State<All_page> createState() => _All_pageState();
 }
 final contrel=PageController(initialPage: 0);
-final boumrdess=[Colors.amber,Colors.blueAccent,Colors.deepOrange];
+final boumrdess=['images/roock.png','images/beach.png','images/city.png'];
 
 class _All_pageState extends State<All_page> {
   @override
@@ -62,46 +62,58 @@ class _All_pageState extends State<All_page> {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: boumrdess[index],
                     borderRadius: BorderRadius.circular(10)
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                       GestureDetector(
-                         onTap: () {
-                          contrel.animateToPage((index+2)%3, duration:Duration(microseconds: 100), curve:Curves.linear);
-                         },
-                         child: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.black12
-                          ),
+                  child: Stack(
+                    children: [
+                      ClipRRect(borderRadius: BorderRadius.circular(15),child: Image.asset(boumrdess[index],fit: BoxFit.fill,width: double.infinity,height: double.infinity,)),
+                      Positioned(
+                        left: 10,
+                        right: 10,
+                        top: 55,
+                        child: Container(
+                          height: 80,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Icon(Icons.navigate_before_rounded),
+                            child: Row(
+                              children: [
+                               GestureDetector(
+                                 onTap: () {
+                                  contrel.animateToPage((index+2)%3, duration:Duration(microseconds: 100), curve:Curves.linear);
+                                 },
+                                 child: Container(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: const Color.fromARGB(115, 255, 255, 255)
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Icon(Icons.navigate_before_rounded),
+                                  ),
+                                 ),
+                               ),
+                                Spacer(),
+                                GestureDetector(
+                                onTap: () {
+                                    contrel.animateToPage((index+1)%3, duration:Duration(microseconds: 100), curve:Curves.linear);
+                                },
+                                 child: Container(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: const Color.fromARGB(115, 255, 255, 255)
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Icon(Icons.navigate_next_rounded),
+                                  ),
+                                 ),
+                               ),
+                              ],
+                            ),
                           ),
-                         ),
-                       ),
-                        Spacer(),
-                        GestureDetector(
-                        onTap: () {
-                            contrel.animateToPage((index+1)%3, duration:Duration(microseconds: 100), curve:Curves.linear);
-                        },
-                         child: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.black12
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Icon(Icons.navigate_next_rounded),
-                          ),
-                         ),
-                       ),
-                      ],
-                    ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               );
