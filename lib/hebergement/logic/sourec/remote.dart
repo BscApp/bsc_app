@@ -13,7 +13,7 @@ class Remote {
     return Heberge.fromJson(response.data);
   }
 Future<List<Heberge>>getAvailableHeberges(DateTime startTime)async{
-  final response = await dio.get('hauberge/available/${startTime.toIso8601String()}');
+  final response = await dio.get('/Hauberge/Available/${startTime.toIso8601String()}');
     return (response.data as List).map((e) => Heberge.fromJson(e)).toList();
   }
 Future<Reservation>MakeReservation(Reservation reservation)async{
