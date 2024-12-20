@@ -3,6 +3,7 @@ import 'package:bsc_app/ai/ui/pages/ai_page.dart';
 import 'package:bsc_app/features/Map/logic/models/position.dart';
 import 'package:bsc_app/features/Map/pages/map.dart';
 import 'package:bsc_app/features/Servises/logic/meteo.dart';
+import 'package:bsc_app/features/Servises/logic/nav.dart';
 
 import 'package:bsc_app/features/Servises/pages/acount_manegment.dart';
 import 'package:bsc_app/features/Servises/pages/home.dart';
@@ -102,7 +103,7 @@ class _HomePageState extends State<HomePage> {
           ],
         )),
       ),
-      body: pages[current],
+      body: pages[context.watch<state>().current],
       bottomNavigationBar: Container(
         margin: EdgeInsets.only(
             bottom: 20, left: 20, right: 20), // Add margin to the bottom
@@ -124,9 +125,8 @@ class _HomePageState extends State<HomePage> {
           child: BottomNavigationBar(
             showSelectedLabels: false,
             showUnselectedLabels: false,
-
-            currentIndex: current,
-            onTap: (value) => setState(() => current = value),
+            currentIndex: context.watch<state>().current,
+            onTap: (value) => setState(() => context.read<state>().changestate(value)),
             backgroundColor: Color(
                 0xFF1C1B45),
             elevation: 0,

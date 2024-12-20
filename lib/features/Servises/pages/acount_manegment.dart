@@ -1,4 +1,6 @@
+import 'package:bsc_app/features/Servises/logic/nav.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AccManegment extends StatefulWidget {
   String username;
@@ -37,7 +39,7 @@ class _AccManegmentState extends State<AccManegment> {
               trailing: Icon(Icons.arrow_forward_ios),
               title: Text(widget.username),
               onTap: () {
-                
+                 context.read<state>().changestate(1);
               },
             ),
           ),
