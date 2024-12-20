@@ -284,7 +284,6 @@ packages:
     dependency: transitive
     description:
       name: leak_tracker
-
       sha256: "7bb2830ebd849694d1ec25bf1f44582d6ac531a57a365a803a6034ff751d2d06"
       url: "https://pub.dev"
     source: hosted
@@ -293,7 +292,6 @@ packages:
     dependency: transitive
     description:
       name: leak_tracker_flutter_testing
-
       sha256: "9491a714cca3667b60b5c420da8217e6de0d1ba7a5ec322fab01758f6998f379"
       url: "https://pub.dev"
     source: hosted
@@ -467,7 +465,7 @@ packages:
     source: hosted
     version: "2.1.0"
   provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: provider
       sha256: c8a055ee5ce3fd98d6fc872478b03823ffdb448699c6ebdbbc71d59b596fd48c
@@ -486,8 +484,7 @@ packages:
     dependency: transitive
     description: flutter
     source: sdk
-    version: "0.0.99"
-
+    version: "0.0.0"
   source_span:
     dependency: transitive
     description:
@@ -508,7 +505,6 @@ packages:
     dependency: transitive
     description:
       name: stack_trace
-
       sha256: "9f47fd3630d76be3ab26f0ee06d213679aa425996925ff3feffdec504931c377"
       url: "https://pub.dev"
     source: hosted
@@ -525,7 +521,6 @@ packages:
     dependency: transitive
     description:
       name: string_scanner
-
       sha256: "688af5ed3402a4bde5b3a6c15fd768dbf2621a614950b17f04626c431ab3c4c3"
       url: "https://pub.dev"
     source: hosted
@@ -550,7 +545,6 @@ packages:
     dependency: transitive
     description:
       name: test_api
-
       sha256: "664d3a9a64782fcdeb83ce9c6b39e78fd2971d4e37827b9b06c3aa1edc5e760c"
       url: "https://pub.dev"
     source: hosted
@@ -679,7 +673,6 @@ packages:
     dependency: transitive
     description:
       name: vm_service
-
       sha256: f6be3ed8bd01289b34d679c2b62226f63c0e69f9fd2e50a6b3c1c729a961041b
       url: "https://pub.dev"
     source: hosted
