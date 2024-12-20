@@ -61,48 +61,6 @@ class ProfilePage extends StatelessWidget {
             ),
           ],
         ),
-        bottomNavigationBar: Container(
-          margin: EdgeInsets.only(
-              bottom: 20, left: 20, right: 20), // Add margin to the bottom
-          height: 65, // Taller height for the bottom bar
-          decoration: BoxDecoration(
-            color:
-                Colors.transparent, // Make the container background transparent
-            borderRadius: BorderRadius.circular(30),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.2),
-                blurRadius: 10,
-                spreadRadius: 2,
-              ),
-            ],
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(30),
-            child: BottomNavigationBar(
-              backgroundColor: Color(
-                  0xFF1C1B45), // Dark background color for the BottomNavigationBar
-              elevation: 0,
-              type: BottomNavigationBarType.fixed,
-              selectedItemColor: Colors.white,
-              unselectedItemColor: Colors.grey,
-              items: [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label: 'Profile',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
-                  label: 'Settings',
-                ),
-              ],
-            ),
-          ),
-        ),
       ),
     );
   }
