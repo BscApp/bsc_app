@@ -6,6 +6,7 @@ class All_page extends StatefulWidget {
   @override
   State<All_page> createState() => _All_pageState();
 }
+final contrel=PageController();
 
 class _All_pageState extends State<All_page> {
   @override
@@ -41,21 +42,43 @@ class _All_pageState extends State<All_page> {
           SizedBox(height: 10),
           Container(
             height: 181,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Container(
-                  width: 362,
-                  margin: EdgeInsets.symmetric(horizontal: 5),
+            child:PageView.builder(
+              controller: contrel,
+              itemCount: 5,
+              itemBuilder:(context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+
                   decoration: BoxDecoration(
-                    color: Color(0xFFD9D9D9),
-                    borderRadius: BorderRadius.circular(28),
+                    color: Colors.amber,
+                    borderRadius: BorderRadius.circular(10)
                   ),
-                  child: Center(child: Text('Picture ${index + 1}')),
-                );
-              },
-            ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        ElevatedButton.icon(
+                          style: ButtonStyle(
+                            elevation:WidgetStatePropertyAll(0),
+                          ),
+                          onPressed:() {
+                          
+                        }, label: Icon(Icons.navigate_next_rounded)),
+                        Spacer(),
+                        ElevatedButton.icon(
+                          style: ButtonStyle(
+                            elevation:WidgetStatePropertyAll(0),
+                          ),
+                          onPressed:() {
+                          
+                        }, label: Icon(Icons.navigate_next_rounded))
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },)
           ),
           SizedBox(height: 10),
           Container(
