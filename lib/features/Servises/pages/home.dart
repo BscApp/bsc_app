@@ -43,6 +43,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         ),
         TabBar(
           tabAlignment: TabAlignment.center,
+          dividerColor: Colors.transparent,
           controller: _tabController,
           isScrollable: true,
           labelPadding:
