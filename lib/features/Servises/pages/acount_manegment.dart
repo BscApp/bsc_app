@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class AccManegment extends StatefulWidget {
   String username;
-  AccManegment({super.key, required this.username});
+  
+  AccManegment({super.key, required this.username ,});
 
   @override
   State<AccManegment> createState() => _AccManegmentState();
@@ -15,9 +16,12 @@ class _AccManegmentState extends State<AccManegment> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40.0), // set the height here
         child: AppBar(
-          title: Text(
-            'Your Account',
-            style: TextStyle(color: Colors.grey, fontSize: 20),
+          title: Padding(
+            padding: const EdgeInsets.only(left: 24),
+            child: Text(
+              'Your Account',
+              style: TextStyle(color: Colors.grey, fontSize: 20),
+            ),
           ),
         ),
       ),
@@ -33,7 +37,7 @@ class _AccManegmentState extends State<AccManegment> {
               trailing: Icon(Icons.arrow_forward_ios),
               title: Text(widget.username),
               onTap: () {
-                Navigator.pushNamed(context, '/profile');
+                
               },
             ),
           ),
@@ -59,14 +63,14 @@ class _AccManegmentState extends State<AccManegment> {
                   trailing: Icon(Icons.arrow_forward_ios),
                   title: Text('Help'),
                   onTap: () {
-                    Navigator.pushNamed(context, '/help');
+                  
                   },
                 ),
                 ListTile(
                   trailing: Icon(Icons.arrow_forward_ios),
                   title: Text('Contact'),
                   onTap: () {
-                    Navigator.pushNamed(context, '/contact');
+                    
                   },
                 ),
               ],
@@ -99,7 +103,7 @@ class _AccManegmentState extends State<AccManegment> {
                     Navigator.pushNamed(context, '/Logout');
                   },
                 ),
-                //another useless comment
+               
                 ListTile(
                   trailing: Icon(
                     Icons.arrow_forward_ios,
