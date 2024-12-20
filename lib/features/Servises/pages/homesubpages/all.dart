@@ -6,7 +6,8 @@ class All_page extends StatefulWidget {
   @override
   State<All_page> createState() => _All_pageState();
 }
-final contrel=PageController();
+final contrel=PageController(initialPage: 0);
+final boumrdess=[Colors.amber,Colors.blueAccent,Colors.deepOrange];
 
 class _All_pageState extends State<All_page> {
   @override
@@ -43,36 +44,52 @@ class _All_pageState extends State<All_page> {
           Container(
             height: 181,
             child:PageView.builder(
+              physics: NeverScrollableScrollPhysics(),
               controller: contrel,
-              itemCount: 5,
+              itemCount: 3,
               itemBuilder:(context, index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-
                   decoration: BoxDecoration(
-                    color: Colors.amber,
+                    color: boumrdess[index],
                     borderRadius: BorderRadius.circular(10)
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
-                        ElevatedButton.icon(
-                          style: ButtonStyle(
-                            elevation:WidgetStatePropertyAll(0),
+                       GestureDetector(
+                         onTap: () {
+                          contrel.animateToPage((index+2)%3, duration:Duration(microseconds: 100), curve:Curves.linear);
+                         },
+                         child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.black12
                           ),
-                          onPressed:() {
-                          
-                        }, label: Icon(Icons.navigate_next_rounded)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(Icons.navigate_before_rounded),
+                          ),
+                         ),
+                       ),
                         Spacer(),
-                        ElevatedButton.icon(
-                          style: ButtonStyle(
-                            elevation:WidgetStatePropertyAll(0),
+                        GestureDetector(
+                        onTap: () {
+                            contrel.animateToPage((index+1)%3, duration:Duration(microseconds: 100), curve:Curves.linear);
+                        },
+                         child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.black12
                           ),
-                          onPressed:() {
-                          
-                        }, label: Icon(Icons.navigate_next_rounded))
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(Icons.navigate_next_rounded),
+                          ),
+                         ),
+                       ),
                       ],
                     ),
                   ),
