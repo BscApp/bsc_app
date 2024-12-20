@@ -102,7 +102,7 @@ class _AccManegmentState extends State<AccManegment> {
                     'Logout',
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, '/Logout');
+                   
                   },
                 ),
                
