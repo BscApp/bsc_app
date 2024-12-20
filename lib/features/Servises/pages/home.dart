@@ -1,7 +1,9 @@
+
 import 'package:bsc_app/features/Servises/pages/homesubpages/all.dart';
 import 'package:bsc_app/features/Servises/pages/homesubpages/hebergement.dart';
 import 'package:bsc_app/features/Servises/pages/homesubpages/services.dart';
 import 'package:bsc_app/features/Servises/pages/homesubpages/transport.dart';
+
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -15,7 +17,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+
     _tabController = TabController(length: 5, vsync: this);
+
   }
 
   @override
@@ -26,6 +30,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
         Padding(

@@ -1,35 +1,27 @@
 import 'package:flutter/material.dart';
 
-class ProfilePage extends StatefulWidget {
+
+class ProfilePage extends StatelessWidget {
   final String username;
   final String id;
+  final Map<String, String> infoRoutes={
+          'Name': '/name',
+          'Email': '/email',
+          'ID card Number': '/id_card_number',
+          'Phone Number': '/phone_number',
+          'Date of birth': '/date_of_birth',
+        };
+
 
   ProfilePage({
     required this.username,
     required this.id,
+
+    
   });
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
-}
 
-class _ProfilePageState extends State<ProfilePage> {
-  final Map<String, String> infoRoutes = {
-    'Name': '/name',
-    'Email': '/email',
-    'ID card Number': '/id_card_number',
-    'Phone Number': '/phone_number',
-    'Date of birth': '/date_of_birth',
-  };
-  late int _current;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _current = 0;
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -40,11 +32,13 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Column(
                 children: [
                   Text(
-                    widget.username,
+
+                    username,
                     style: TextStyle(fontSize: 24, color: Colors.grey),
                   ),
                   Text(
-                    widget.id,
+                    id,
+
                     style: TextStyle(fontSize: 13, color: Colors.grey),
                   ),
                 ],
@@ -73,7 +67,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ],
         ),
-        
+
       ),
     );
   }

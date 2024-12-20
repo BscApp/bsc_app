@@ -12,6 +12,7 @@ class _AccManegmentState extends State<AccManegment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40.0), // set the height here
         child: AppBar(
