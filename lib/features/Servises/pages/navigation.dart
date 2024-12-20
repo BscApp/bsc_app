@@ -28,7 +28,13 @@ class _HomePageState extends State<HomePage> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40.0), // set the height here
         child: AppBar(
-          title: Text('Your Location'),
+          title: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              Icon(Icons.location_on,color: Colors.grey,),
+              Text('Boumrdess,corso',style: TextStyle(color: Colors.grey),),
+            ],
+          )
         ),
       ),
       body: pages[_current],
@@ -51,6 +57,8 @@ class _HomePageState extends State<HomePage> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(30),
           child: BottomNavigationBar(
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
             currentIndex: _current,
             onTap: (value) => setState(() => _current = value),
             backgroundColor: Color(
@@ -59,18 +67,22 @@ class _HomePageState extends State<HomePage> {
             type: BottomNavigationBarType.fixed,
             selectedItemColor: Colors.white,
             unselectedItemColor: Colors.grey,
-            items: [
+            items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
-                label: 'Home',
+                label: ''
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
-                label: 'Profile',
+                label: ''
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.access_alarm_sharp),
+                label: ''
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.settings),
-                label: 'Settings',
+                label: ''
               ),
             ],
           ),
