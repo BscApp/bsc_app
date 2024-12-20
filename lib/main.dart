@@ -3,6 +3,7 @@ import 'package:bsc_app/ai/ui/bloc/ai_bloc.dart';
 import 'package:bsc_app/ai/ui/bloc/ai_state.dart';
 import 'package:bsc_app/features/Map/pages/map.dart';
 import 'package:bsc_app/features/Servises/pages/navigation.dart';
+import 'package:bsc_app/features/auth/pages/welcome.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
