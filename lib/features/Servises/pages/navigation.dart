@@ -12,6 +12,8 @@ import 'package:bsc_app/hebergement/ui/bloc/heberge_event.dart';
 import 'package:bsc_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -74,10 +76,10 @@ class _HomePageState extends State<HomePage> {
                   );
                 } else if (snapshot.hasError) {
                   return Text(' check your network',
-                      style: TextStyle(color: Colors.red));
+                      style: TextStyle(color: Colors.red, fontSize: 16));
                 } else {
                   return Text(' Boumerdes,${snapshot.data?.cityName}',
-                      style: TextStyle(color: Colors.grey));
+                      style: TextStyle(color: Colors.grey, fontSize: 16));
                 }
               },
             ),
@@ -132,17 +134,29 @@ class _HomePageState extends State<HomePage> {
 
             items: [
               BottomNavigationBarItem(
-                  icon: Image.asset(
+                  activeIcon: Image.asset(
                     'assets/icons/home.png',
                     height: 23,
                     width: 23,
                   ),
+                  icon: Image.asset(
+                    'assets/icons/home.png',
+                    height: 23,
+                    width: 23,
+                    color: Colors.grey.withOpacity(0.5),
+                  ),
                   label: ''),
               BottomNavigationBarItem(
+                  activeIcon: Image.asset(
+                    'assets/icons/profile.png',
+                    height: 23,
+                    width: 23,
+                  ),
                   icon: Image.asset(
                     'assets/icons/profile.png',
                     height: 23,
                     width: 23,
+                    color: Colors.grey.withOpacity(0.5),
                   ),
                   label: ''),
               BottomNavigationBarItem(
@@ -150,13 +164,25 @@ class _HomePageState extends State<HomePage> {
                     'assets/icons/map.png',
                     height: 23,
                     width: 23,
+                    color: Colors.grey.withOpacity(0.5),
+                  ),
+                  activeIcon: Image.asset(
+                    'assets/icons/map.png',
+                    height: 23,
+                    width: 23,
                   ),
                   label: ''),
               BottomNavigationBarItem(
+                  activeIcon: Image.asset(
+                    'assets/icons/settings.png',
+                    height: 23,
+                    width: 23,
+                  ),
                   icon: Image.asset(
                     'assets/icons/settings.png',
                     height: 23,
                     width: 23,
+                    color: Colors.grey.withOpacity(0.5),
                   ),
                   label: ''),
             ],

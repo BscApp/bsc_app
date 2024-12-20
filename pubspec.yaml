@@ -73,7 +73,7 @@ flutter:
   assets:
      - images/protection.png
      - images/police.png
-     - images/emergancy.png
+     - images/hopital.png
      - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
