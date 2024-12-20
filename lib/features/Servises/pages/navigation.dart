@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40.0), // set the height here
         child: AppBar(
+
           title: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
@@ -57,8 +58,10 @@ class _HomePageState extends State<HomePage> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(30),
           child: BottomNavigationBar(
+
             showSelectedLabels: false,
             showUnselectedLabels: false,
+
             currentIndex: _current,
             onTap: (value) => setState(() => _current = value),
             backgroundColor: Color(
@@ -67,6 +70,7 @@ class _HomePageState extends State<HomePage> {
             type: BottomNavigationBarType.fixed,
             selectedItemColor: Colors.white,
             unselectedItemColor: Colors.grey,
+
             items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
@@ -83,6 +87,7 @@ class _HomePageState extends State<HomePage> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.settings),
                 label: ''
+
               ),
             ],
           ),

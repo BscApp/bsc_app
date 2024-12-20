@@ -1,3 +1,9 @@
+
+import 'package:bsc_app/features/Servises/pages/homesubpages/all.dart';
+import 'package:bsc_app/features/Servises/pages/homesubpages/hebergement.dart';
+import 'package:bsc_app/features/Servises/pages/homesubpages/services.dart';
+import 'package:bsc_app/features/Servises/pages/homesubpages/transport.dart';
+
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -11,7 +17,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+
+    _tabController = TabController(length: 5, vsync: this);
+
   }
 
   @override
@@ -22,44 +30,59 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-        bottom: TabBar(
+
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+              decoration: InputDecoration(
+            fillColor: Color(0xFFF2F2F2),
+            filled: true,
+            hintText: ' Search',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25.0),
+              borderSide: BorderSide.none,
+            ),
+          )),
+        ),
+        TabBar(
+          tabAlignment: TabAlignment.center,
           controller: _tabController,
+          isScrollable: true,
+          labelPadding:
+              EdgeInsets.symmetric(horizontal: 8.0), // Reduced spacing
           tabs: [
-            Tab(icon: Icon(Icons.home), text: 'Home'),
-            Tab(icon: Icon(Icons.search), text: 'Search'),
-            Tab(icon: Icon(Icons.person), text: 'Profile'),
+            Tab(
+                child: Text('All',
+                    style: TextStyle(color: Colors.grey, fontSize: 12))),
+            Tab(
+                child: Text('Service',
+                    style: TextStyle(color: Colors.grey, fontSize: 12))),
+            Tab(
+                child: Text('hebergement',
+                    style: TextStyle(color: Colors.grey, fontSize: 12))),
+            Tab(
+                child: Text('Transport',
+                    style: TextStyle(color: Colors.grey, fontSize: 12))),
+            Tab(
+                child: Text('Lieu Touristique',
+                    style: TextStyle(color: Colors.grey, fontSize: 12))),
           ],
         ),
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Search...',
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-              ),
-            ),
+        Expanded(
+          child: TabBarView(
+            controller: _tabController,
+            children: [
+              All_page(),
+              Services(),
+              Hebergement(),
+              Transport(),
+              All_page(),
+            ],
           ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                Center(child: Text('Home Tab')),
-                Center(child: Text('Search Tab')),
-                Center(child: Text('Profile Tab')),
-              ],
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

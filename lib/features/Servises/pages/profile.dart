@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class ProfilePage extends StatelessWidget {
   final String username;
   final String id;
@@ -11,13 +12,16 @@ class ProfilePage extends StatelessWidget {
           'Date of birth': '/date_of_birth',
         };
 
+
   ProfilePage({
     required this.username,
     required this.id,
+
     
   });
 
   @override
+
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -28,11 +32,13 @@ class ProfilePage extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
+
                     username,
                     style: TextStyle(fontSize: 24, color: Colors.grey),
                   ),
                   Text(
                     id,
+
                     style: TextStyle(fontSize: 13, color: Colors.grey),
                   ),
                 ],
@@ -61,6 +67,7 @@ class ProfilePage extends StatelessWidget {
             ),
           ],
         ),
+
       ),
     );
   }

@@ -7,7 +7,9 @@ class Services extends StatefulWidget {
   State<Services> createState() => _ServicesState();
 }
 
-List<Map<String, dynamic>> services = [
+
+List<Map<String, dynamic>> _services = [
+
   {
     'name': 'Hospital de boumrdes',
     'place': '',
@@ -33,7 +35,9 @@ class _ServicesState extends State<Services> {
   Widget build(BuildContext context) {
     return ListView.builder(
       scrollDirection: Axis.vertical,
-      itemCount: services.length,
+
+      itemCount: _services.length,
+
       itemBuilder: (context, index) {
         return Container(
           height: 123,
@@ -43,14 +47,16 @@ class _ServicesState extends State<Services> {
             borderRadius: BorderRadius.circular(28),
           ),
           child: ListTile(
-            leading: Icon(services[index]['icon']),
+
+            leading: Icon(_services[index]['icon']),
             subtitle: Text(
                 'place: ' +
-                    services[index]['place']+
+                    _services[index]['place'] +
                     '\nnumber: ' +
-                    services[index]['number'],
+                    _services[index]['number'],
                 style: TextStyle(fontSize: 16, color: Colors.grey[800])),
-            title: Text(services[index]['name'],
+            title: Text(_services[index]['name'],
+
                 style: TextStyle(fontSize: 20, color: Colors.grey[800])),
           ),
         );
