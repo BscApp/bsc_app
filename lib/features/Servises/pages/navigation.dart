@@ -1,3 +1,5 @@
+import 'package:bsc_app/features/Map/logic/models/position.dart';
+import 'package:bsc_app/features/Map/pages/map.dart';
 import 'package:bsc_app/features/Servises/pages/acount_manegment.dart';
 import 'package:bsc_app/features/Servises/pages/home.dart';
 import 'package:bsc_app/features/Servises/pages/profile.dart';
@@ -12,6 +14,7 @@ class _HomePageState extends State<HomePage> {
   final pages = [
     Home(),
     ProfilePage(username: 'islam', id: 'nkjb'),
+    MapPage(),
     AccManegment(username: 'islam'),
   ];
   late int current;
@@ -22,21 +25,47 @@ class _HomePageState extends State<HomePage> {
     current = 0;
   }
 
+  position p = position();
+  Future<position> _getCityName() async {
+    await p.determinePosition();
+    await p.getCityName();
+    return p;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40.0), // set the height here
         child: AppBar(
-
-          title: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Icon(Icons.location_on,color: Colors.grey,),
-              Text('Boumrdess,corso',style: TextStyle(color: Colors.grey),),
-            ],
-          )
-        ),
+            title: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(
+              Icons.location_on,
+              color: Colors.grey,
+            ),
+            FutureBuilder<position>(
+              future: p.cityLoaded ? Future.value(p) : _getCityName(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(
+                        color: Colors.grey, strokeWidth: 2),
+                  );
+                } else if (snapshot.hasError) {
+                  return Text('check your network',
+                      style: TextStyle(color: Colors.red));
+                } else {
+                  return Text('Boumerdes,${snapshot.data?.cityName}',
+                      style: TextStyle(color: Colors.grey));
+                }
+              },
+            ),
+          ],
+        )),
       ),
       body: pages[current],
       bottomNavigationBar: Container(
@@ -58,7 +87,6 @@ class _HomePageState extends State<HomePage> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(30),
           child: BottomNavigationBar(
-
             showSelectedLabels: false,
             showUnselectedLabels: false,
 
@@ -72,23 +100,11 @@ class _HomePageState extends State<HomePage> {
             unselectedItemColor: Colors.grey,
 
             items: const [
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+              BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
               BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: ''
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: ''
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.access_alarm_sharp),
-                label: ''
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
-                label: ''
-
-              ),
+                  icon: Icon(Icons.access_alarm_sharp), label: ''),
+              BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
             ],
           ),
         ),
