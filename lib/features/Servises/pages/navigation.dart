@@ -7,8 +7,13 @@ import 'package:bsc_app/features/Servises/logic/meteo.dart';
 import 'package:bsc_app/features/Servises/pages/acount_manegment.dart';
 import 'package:bsc_app/features/Servises/pages/home.dart';
 import 'package:bsc_app/features/Servises/pages/profile.dart';
+import 'package:bsc_app/hebergement/ui/bloc/heberge_bloc.dart';
+import 'package:bsc_app/hebergement/ui/bloc/heberge_event.dart';
+import 'package:bsc_app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -45,9 +50,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ChatPage()));
+      floatingActionButton: FloatingActionButton(onPressed: () { 
+        context.read<HebergeBloc>().add(HebergesEventFetch());
       }),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40.0), // set the height here

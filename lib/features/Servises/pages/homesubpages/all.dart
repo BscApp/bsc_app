@@ -1,3 +1,4 @@
+import 'package:bsc_app/ai/ui/pages/ai_page.dart';
 import 'package:flutter/material.dart';
 
 class All_page extends StatefulWidget {
@@ -24,16 +25,24 @@ class _All_pageState extends State<All_page> {
             child: Text('Ask our IA'),
           ),
           SizedBox(height: 10),
-          Container(
-            width: 490,
-            height: 90,
-            decoration: BoxDecoration(
-              color: Color(0xFFF2F2F2),
-              borderRadius: BorderRadius.circular(28),
+          GestureDetector(
+            onTap: (){
+
+
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => ChatPage()));
+            },
+            child: Container(
+              width: 490,
+              height: 90,
+              decoration: BoxDecoration(
+                color: Color(0xFFF2F2F2),
+                borderRadius: BorderRadius.circular(28),
+              ),
+              padding: EdgeInsets.all(8),
+              alignment: Alignment.center,
+              child: Text('ask our ai'),
             ),
-            padding: EdgeInsets.all(8),
-            alignment: Alignment.center,
-            child: Text('ask our ai'),
           ),
           SizedBox(height: 10),
           Container(
