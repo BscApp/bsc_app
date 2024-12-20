@@ -6,7 +6,7 @@ class Remotesouce {
   final api=Dioservices.dio;
   Future<Resmodel> getResponse(String prompt)async{
     try{
-
+  final realPrompt='If I talk About something Other than boumerdess city on general answer me with the following:Ask me about Boumerdess city only. and here is the talk :$prompt';
    final res=await api.post('/ai/',data: {'prompt':prompt});
     final message=res.data[0]['content']['parts'][0]['text'];
       print(message);
