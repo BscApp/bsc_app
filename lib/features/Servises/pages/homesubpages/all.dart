@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class All_page extends StatefulWidget {
-  const All_page({super.key});
+  final TabController tabController;
+   All_page({super.key,required this.tabController});
 
   @override
   State<All_page> createState() => _All_pageState();
@@ -101,7 +102,20 @@ class _All_pageState extends State<All_page> {
           Container(
             padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
             alignment: Alignment.centerLeft,
-            child: Text('hebergements'),
+            child: Row(
+              children: [
+                Text('hebergements'),
+                Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      widget.tabController.animateTo(2);
+                    });
+                  },
+                  child: Text('See all')),
+                Icon(Icons.navigate_next_rounded)
+              ],
+            ),
           ),
           SizedBox(height: 10),
           Container(
@@ -126,7 +140,20 @@ class _All_pageState extends State<All_page> {
           Container(
             padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
             alignment: Alignment.centerLeft,
-            child: Text('Complexes Touristiques'),
+            child: Row(
+              children: [
+                Text('Luie touristique'),
+                Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      widget.tabController.animateTo(4);
+                    });
+                  },
+                  child: Text('See all')),
+                Icon(Icons.navigate_next_rounded)
+              ],
+            ),
           ),
           SizedBox(height: 10),
           Container(
