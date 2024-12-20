@@ -11,32 +11,26 @@ class Services extends StatefulWidget {
 
 
 List<Map<String, dynamic>> _services = [
-
   {
-    'name': 'Hospital de boumrdes',
-    'place': 'Place 3',
-    'number': '0555860582',
-    'icon': Image.asset('images/police.png'),
+    'name': 'Hospital el Selam',
+    'place': 'Avenue de l’Indépendance',
+    'number': '024937582',
+    'icon': Image.asset('images/hopital.png'),
   },
   {
     'name': 'Police',
-    'place': 'Place 2',
-    'number': '0555860582',
+    'place': 'Rue de la Police, Boumerdès',
+    'number': '1548',
     'icon': Image.asset('images/police.png'),
   },
   {
     'name': 'Protection Civile',
-    'place': 'Place 3',
-    'number': '0555860582',
+    'place': 'Rue des Frères Mokrani, Boumerdès',
+    'number': '14',
     'icon': Image.asset('images/protection.png'),
   },
-  {
-    'name': 'SOS',
-    'place': null,
-    'number': '0555860582',
-    'icon': Image.asset('images/emergancy.png'),
-  },
 ];
+
 
 class _ServicesState extends State<Services> {
   Future<void> callNumber(String phoneNumber) async {
@@ -76,7 +70,7 @@ class _ServicesState extends State<Services> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(_services[index]['name'],style: TextStyle(fontSize: 20),),
+                      Text(_services[index]['name'],style: TextStyle(fontSize: 20,fontWeight:FontWeight.w600),),
                       SizedBox(height: 5,),
                       if(_services[index]['place']!=null)
                       Row(
@@ -85,7 +79,7 @@ class _ServicesState extends State<Services> {
                           Text(_services[index]['place'])
                         ],
                       ),
-                      SizedBox(height: 5,),
+                      SizedBox(height: 8,),
                       GestureDetector(
                         onTap: () {
                           callNumber(_services[index]['number']);
