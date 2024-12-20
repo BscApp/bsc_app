@@ -14,19 +14,19 @@ List<Map<String, dynamic>> _services = [
     'name': 'Hospital de boumrdes',
     'place': '',
     'number': '',
-    'icon': Icons.ac_unit,
+    'icon': Image.asset('images/police.png'),
   },
   {
     'name': 'Service 2',
     'place': 'Place 2',
     'number': 'Number 2',
-    'icon': Icons.ac_unit,
+    'icon': Image.asset('images/police.png'),
   },
   {
     'name': 'Service 3',
     'place': 'Place 3',
     'number': 'Number 3',
-    'icon': Icons.ac_unit,
+    'icon': Image.asset('images/protection.png'),
   },
 ];
 
@@ -48,7 +48,7 @@ class _ServicesState extends State<Services> {
           ),
           child: ListTile(
 
-            leading: Icon(_services[index]['icon']),
+            leading: _services[index]['icon'],
             subtitle: Text(
                 'place: ' +
                     _services[index]['place'] +

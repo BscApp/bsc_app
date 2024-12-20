@@ -51,24 +51,33 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           dividerColor: Colors.transparent,
           controller: tabController,
           isScrollable: true,
+          labelStyle: TextStyle(
+    fontSize: 16, // Bigger font size for selected tab
+    fontWeight: FontWeight.bold, 
+    color: Colors.black// Bold style for selected tab
+  ),
+  unselectedLabelStyle: TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.normal
+  ),
           labelPadding:
               EdgeInsets.symmetric(horizontal: 8.0), // Reduced spacing
           tabs: [
             Tab(
                 child: Text('All',
-                    style: TextStyle(color: Colors.grey, fontSize: 12))),
+                    )),
             Tab(
                 child: Text('Service',
-                    style: TextStyle(color: Colors.grey, fontSize: 12))),
+                    )),
             Tab(
                 child: Text('hebergement',
-                    style: TextStyle(color: Colors.grey, fontSize: 12))),
+                    )),
             Tab(
                 child: Text('Transport',
-                    style: TextStyle(color: Colors.grey, fontSize: 12))),
+                    )),
             Tab(
                 child: Text('Lieu Touristique',
-                    style: TextStyle(color: Colors.grey, fontSize: 12))),
+                    )),
           ],
         ),
         Expanded(
