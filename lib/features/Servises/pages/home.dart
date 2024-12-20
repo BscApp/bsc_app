@@ -12,19 +12,19 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+  late TabController tabController;
 
   @override
   void initState() {
     super.initState();
 
-    _tabController = TabController(length: 5, vsync: this);
+    tabController = TabController(length: 5, vsync: this);
 
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
+    tabController.dispose();
     super.dispose();
   }
 
@@ -49,37 +49,46 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         TabBar(
           tabAlignment: TabAlignment.center,
           dividerColor: Colors.transparent,
-          controller: _tabController,
+          controller: tabController,
           isScrollable: true,
+          labelStyle: TextStyle(
+    fontSize: 16, // Bigger font size for selected tab
+    fontWeight: FontWeight.bold, 
+    color: Colors.black// Bold style for selected tab
+  ),
+  unselectedLabelStyle: TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.normal
+  ),
           labelPadding:
               EdgeInsets.symmetric(horizontal: 8.0), // Reduced spacing
           tabs: [
             Tab(
                 child: Text('All',
-                    style: TextStyle(color: Colors.grey, fontSize: 12))),
+                    )),
             Tab(
                 child: Text('Service',
-                    style: TextStyle(color: Colors.grey, fontSize: 12))),
+                    )),
             Tab(
                 child: Text('hebergement',
-                    style: TextStyle(color: Colors.grey, fontSize: 12))),
+                    )),
             Tab(
                 child: Text('Transport',
-                    style: TextStyle(color: Colors.grey, fontSize: 12))),
+                    )),
             Tab(
                 child: Text('Lieu Touristique',
-                    style: TextStyle(color: Colors.grey, fontSize: 12))),
+                    )),
           ],
         ),
         Expanded(
           child: TabBarView(
-            controller: _tabController,
+            controller: tabController,
             children: [
-              All_page(),
+              All_page(tabController: tabController,),
               Services(),
               Hebergement(),
               Transport(),
-              All_page(),
+              All_page(tabController: tabController,),
             ],
           ),
         ),
