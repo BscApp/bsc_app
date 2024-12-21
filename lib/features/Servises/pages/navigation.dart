@@ -26,9 +26,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final pages = [
     Home(),
-    ProfilePage(username: 'islam', id: 'nkjb'),
+    ProfilePage(),
     MapPage(),
-    AccManegment(username: 'islam'),
+    AccManegment(),
   ];
   late int current;
   var temporare;
@@ -39,6 +39,8 @@ class _HomePageState extends State<HomePage> {
   }
   void initState() {
     super.initState();
+    
+        context.read<HebergeBloc>().add(HebergesEventFetch());
     current = 0;
   }
   
@@ -53,12 +55,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
+      
       floatingActionButton: FloatingActionButton(onPressed: () { 
-        context.read<HebergeBloc>().add(HebergesEventFetch());
       }),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(40.0), // set the height here
+        preferredSize: const Size.fromHeight(40.0), // set the height here
         child: AppBar(
+        automaticallyImplyLeading: false,
             title: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -71,41 +75,41 @@ class _HomePageState extends State<HomePage> {
               future: p.cityLoaded ? Future.value(p) : _getCityName(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return SizedBox(
+                  return const SizedBox(
                     width: 20,
                     height: 20,
                     child: CircularProgressIndicator(
                         color: Colors.grey, strokeWidth: 2),
                   );
                 } else if (snapshot.hasError) {
-                  return Text(' check your network',
+                  return const Text(' check your network',
                       style: TextStyle(color: Colors.red, fontSize: 16));
                 } else {
                   return Text(' Boumerdes,${snapshot.data?.cityName}',
-                      style: TextStyle(color: Colors.grey, fontSize: 16));
+                      style: const TextStyle(color: Colors.grey, fontSize: 16));
                 }
               },
             ),
-            Spacer(),
+            const Spacer(),
             if (temporare==null)
             FutureBuilder(future:MeteoService().fetchWeather(), builder:(context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Text('');
+                  return const Text('');
                 } else if (snapshot.hasError) {
-                  return Text('');
+                  return const Text('');
                 } else {
                   return Text('${snapshot.data.toString()}°',
-                      style: TextStyle(color: Colors.grey));
+                      style: const TextStyle(color: Colors.grey));
                 }
             },),
             if (temporare!=null)
-            Text('${temporare.toString()}°', style: TextStyle(color: Colors.grey))
+            Text('${temporare.toString()}°', style: const TextStyle(color: Colors.grey))
           ],
         )),
       ),
       body: pages[context.watch<state>().current],
       bottomNavigationBar: Container(
-        margin: EdgeInsets.only(
+        margin: const EdgeInsets.only(
             bottom: 20, left: 20, right: 20), // Add margin to the bottom
         height: 65, // Taller height for the bottom bar
         decoration: BoxDecoration(
@@ -127,7 +131,7 @@ class _HomePageState extends State<HomePage> {
             showUnselectedLabels: false,
             currentIndex: context.watch<state>().current,
             onTap: (value) => setState(() => context.read<state>().changestate(value)),
-            backgroundColor: Color(
+            backgroundColor: const Color(
                 0xFF1C1B45),
             elevation: 0,
             type: BottomNavigationBarType.fixed,

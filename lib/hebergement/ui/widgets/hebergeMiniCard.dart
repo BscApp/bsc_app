@@ -1,71 +1,99 @@
+
 import 'package:bsc_app/hebergement/logic/models/heberge.dart';
 import 'package:flutter/material.dart';
 
-class MiniCard extends StatelessWidget {
-  final Heberge heberge;
+class HotelCard extends StatelessWidget {
+  final Heberge hotelData;
 
-  const MiniCard({Key? key, required this.heberge}) : super(key: key);
+  HotelCard({required this.hotelData});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Container(
-        decoration:BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: Color(0xffD9D9D9),
-        ) ,
-       child:  Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-    Padding(
-      padding: const EdgeInsets.only(top: 10,left: 15,right: 15),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: Colors.white,
-        ),
-        child: Image.network(
-                  
-                heberge.image.isNotEmpty ? heberge.image[0] : 'https://via.placeholder.com/150',
-                height: 80,
-                width: 120,
-                fit: BoxFit.cover,
-              ),
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
       ),
-    ),
-          Text(
-            heberge.nom,
-            style: TextStyle(
-                color:Colors.black.withOpacity(0.5),
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+      elevation: 4,
+      margin: EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Image Section
+          ClipRRect(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(12.0)),
+            child: Image.network(
+              hotelData.image[0], // Replace with actual image URL
+              height: 120,
+              width: double.infinity,
+              fit: BoxFit.cover,
             ),
           ),
-            Text('Type: ${heberge.type}'),
-
-            Row(
-               mainAxisAlignment: MainAxisAlignment.spaceAround,
+          // Content Section
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-              IconButton(onPressed: (){}, icon: Icon(Icons.location_on)),
-              Icon(Icons.star,color: Colors.yellow,),
-              Text('${heberge.rating}'),
-                SizedBox(width: 10,),
-              Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-   color: Color(0xff140C47)),
-                child: Text(heberge.cost,style: TextStyle(color: Colors.white),)
-              )
-                
-              
-            ],)
-
-    ]
-              )
+                // Hotel Name and Type
+                Text(
+                  hotelData.nom, // Hotel Name
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+                SizedBox(height: 4),
+                Text(
+                  "Type: ${hotelData.type}", // Hotel Type
+                  style: TextStyle(
+                    color: Colors.grey[600],
+                    fontSize: 14,
+                  ),
+                ),
+                SizedBox(height: 8),
+                // Icon Row
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.location_pin,
+                          color: Colors.grey[600],
+                          size: 18,
+                        ),
+                        SizedBox(width: 4),
+                        Icon(
+                          Icons.star_border,
+                          color: Colors.grey[600],
+                          size: 18,
+                        ),
+                      ],
+                    ),
+                    // Price
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 8.0, vertical: 4.0),
+                      decoration: BoxDecoration(
+                        color: Colors.deepPurple,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Text(
+                        "${hotelData.cost}",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
 }
+
