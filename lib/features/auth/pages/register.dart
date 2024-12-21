@@ -1,4 +1,5 @@
 import 'package:bsc_app/features/auth/model/user.dart';
+import 'package:bsc_app/features/auth/pages/login.dart';
 import 'package:bsc_app/features/auth/pages/more_info.dart';
 import 'package:flutter/material.dart';
 
@@ -132,25 +133,34 @@ class CreateAccountPage extends StatelessWidget {
                   minimumSize: const Size(double.infinity, 50)),
             ),
             const SizedBox(height: 8),
-            TextButton(
-              onPressed: () {},
-              child: RichText(
-                text: TextSpan(
-                  text: 'Have an account already? ',
-                  style: TextStyle(color: Color(0xFF140C47), fontSize: 16),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: 'Log in',
-                      style: TextStyle(
-                        color: Color(0xFF140C47),
-                        fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+               Row(
+  mainAxisAlignment: MainAxisAlignment.center, // Center the row content
+  children: [
+    // First part of the text
+    Text(
+      'Have an account already? ',
+      style: TextStyle(color: Color(0xFF140C47), fontSize: 16),
+    ),
+    // Second part of the text with underline and bold styling
+    GestureDetector(
+      onTap: () {
+        // Add your navigation or action here
+        Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context)=>LoginPage())
+                  );
+      },
+      child: Text(
+        'Log in',
+        style: TextStyle(
+          color: Color(0xFF140C47),
+          fontWeight: FontWeight.bold,
+          decoration: TextDecoration.underline,
+        ),
+      ),
+    ),
+  ],
+)
+
           ],
         ),
       ),
