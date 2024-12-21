@@ -40,7 +40,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(splashColor: Colors.transparent),
-      home: HomePage(),
+      home: BlocBuilder<UserBloc, UserState>(
+        builder: (context, state) {
+          if (state is UserInitial) {
+            return WelcomePage();
+          }
+          if (state is UserLoaded) {
+            return HomePage();
+          }
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        },
+      ),
     );
   }
 }
