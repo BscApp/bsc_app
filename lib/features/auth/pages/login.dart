@@ -10,7 +10,7 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 101),
-            Image.asset('assets/icons/auth.png', height: 100),
+            Image.asset('assets/icons/auth.png', height: 73, width: 138),
             SizedBox(height: 16),
             Text(
               'Welcome to Back',
@@ -27,18 +27,34 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 187),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Email Address',
-                border: OutlineInputBorder(),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text('Email Address',
+                  style: TextStyle(fontSize: 16, color: Color(0xFF140C47))),
+            ),
+            SizedBox(height: 8),
+            SizedBox(
+              height: 50,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
               ),
             ),
             SizedBox(height: 16),
-            TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text('password',
+                  style: TextStyle(fontSize: 16, color: Color(0xFF140C47))),
+            ),
+            SizedBox(height: 8),
+            SizedBox(
+              height: 50,
+              child: TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
               ),
             ),
             Spacer(),
@@ -56,7 +72,22 @@ class LoginPage extends StatelessWidget {
             SizedBox(height: 8),
             TextButton(
               onPressed: () {},
-              child: Text('Don’t have an account? Sign up now'),
+                child: RichText(
+                text: TextSpan(
+                  text: 'Don’t have an account? ',
+                  style: TextStyle(color: Color(0xFF140C47), fontSize: 16),
+                  children: <TextSpan>[
+                  TextSpan(
+                    text: 'Sign up now',
+                    style: TextStyle(
+                    color: Color(0xFF140C47),
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline,
+                    ),
+                  ),
+                  ],
+                ),
+                ),
             ),
           ],
         ),
