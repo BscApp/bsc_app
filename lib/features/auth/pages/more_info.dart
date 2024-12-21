@@ -7,14 +7,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-class WriteInformationPage extends StatelessWidget {
+class WriteInformationPage extends StatefulWidget {
   final User user;
-  final PhoneNumberContoller = TextEditingController();
-  final DateOfBirthController = TextEditingController();
-  final IDCardNumberController = TextEditingController();
 
   WriteInformationPage({super.key, required this.user});
 
+  @override
+  State<WriteInformationPage> createState() => _WriteInformationPageState();
+}
+
+class _WriteInformationPageState extends State<WriteInformationPage> {
+ late final TextEditingController PhoneNumberContoller;
+
+ late final TextEditingController DateOfBirthController ;
+
+  late final TextEditingController IDCardNumberController;
+
+  @override
+    void initState() {
+      super.initState();
+    PhoneNumberContoller=TextEditingController();
+    DateOfBirthController=TextEditingController();
+    IDCardNumberController=TextEditingController();
+    }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,10 +85,10 @@ class WriteInformationPage extends StatelessWidget {
                 onPressed: () {
                   final format = DateFormat('dd/MM/yyyy');
                   final Newuser = User(
-                    firstName: user.firstName,
-                    lastName: user.lastName,
-                    email: user.email,
-                    password: user.password,
+                    firstName: widget.user.firstName,
+                    lastName: widget.user.lastName,
+                    email: widget.user.email,
+                    password: widget.user.password,
                     phone: PhoneNumberContoller.text,
                     dateOfBirth: format.parse(DateOfBirthController.text),
                     cardId: IDCardNumberController.text,
@@ -81,7 +96,7 @@ class WriteInformationPage extends StatelessWidget {
                     placeOfBirth: 'BOUMERDES',
                   );
                   print(Newuser.toJson());
-                  //BlocProvider.of<UserBloc>(context).add(RegisterEvent(user: user));
+                  BlocProvider.of<UserBloc>(context).add(RegisterEvent(user: Newuser));
                 },
                 style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(

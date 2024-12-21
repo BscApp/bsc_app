@@ -30,6 +30,18 @@ final rmoteAuth=RemoteAuth();
       emit(UserInitial());
     });
     
+   on<deleteAccount>((event,emit)async{
+      try{
+        if (state is UserLoaded){
+ final id=(state as UserLoaded).user.cardId; 
+       await rmoteAuth.delAccount(id)       ;  
+
+        }
+             
+      }catch(e){
+      emit(UserError(message:e.toString()));
+      }
+    }); 
   } 
 
 

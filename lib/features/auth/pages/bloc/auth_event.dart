@@ -11,3 +11,4 @@ class RegisterEvent extends UserEvents{
   RegisterEvent({required this.user});
 }
 class LogoutEvent extends UserEvents{}
+class deleteAccount extends UserEvents{}

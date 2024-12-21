@@ -1,5 +1,10 @@
 import 'package:bsc_app/ai/ui/pages/ai_page.dart';
+import 'package:bsc_app/hebergement/logic/models/heberge.dart';
+import 'package:bsc_app/hebergement/ui/bloc/heberge_bloc.dart';
+import 'package:bsc_app/hebergement/ui/bloc/heberge_state.dart';
+import 'package:bsc_app/hebergement/ui/widgets/hebergeMiniCard.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class All_page extends StatefulWidget {
@@ -178,40 +183,27 @@ class _All_pageState extends State<All_page> {
           SizedBox(height: 10),
           Container(
             height: 200,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 2,
-              itemBuilder: (context, index) {
-                return Container(
-                  width: 200,
-                  height: 200,
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  decoration: BoxDecoration(
-                    color: Color(0xFFD9D9D9),
-                    borderRadius: BorderRadius.circular(28),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 18.0),
-                    child: Column(
-                      children: [
-                        Container(
-                       
-                          height: 100,
-                          width: 170,
-                          decoration: BoxDecoration(
-                            color: Colors.amberAccent,
-                            borderRadius: BorderRadius.circular(20)
-                          ),
-                        ),
-                        SizedBox(height: 10,),
-                        Text('The name of the place'),
-                        SizedBox(height: 2,),
-                        Text('Type: Camp'),
-                      ],
-                    ),
-                  ),
+            child: BlocBuilder<HebergeBloc,HebergeState>(
+              builder: (context,state) {
+                //TODO fix this  
+                return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 1,
+                  itemBuilder: (context, index) {
+                return MiniCard(heberge:   Heberge(
+    id: '1',
+    nom: 'Hotel 1',
+    rating: 4,
+    image: ['https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'],
+    offres: [],
+    type: '',
+    adresse: '',
+    cost: '600Da',
+  ),
+);  
+                },
                 );
-              },
+              }
             ),
           ),
           SizedBox(height: 10),
