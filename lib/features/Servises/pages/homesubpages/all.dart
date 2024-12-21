@@ -1,69 +1,61 @@
 import 'package:bsc_app/ai/ui/pages/ai_page.dart';
-import 'package:bsc_app/hebergement/logic/models/heberge.dart';
-import 'package:bsc_app/hebergement/ui/bloc/heberge_bloc.dart';
-import 'package:bsc_app/hebergement/ui/bloc/heberge_state.dart';
-import 'package:bsc_app/hebergement/ui/widgets/hebergeMiniCard.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class All_page extends StatefulWidget {
+class AllPage extends StatefulWidget {
   final TabController tabController;
-   All_page({super.key,required this.tabController});
+  const AllPage({super.key, required this.tabController});
 
   @override
-  State<All_page> createState() => _All_pageState();
+  State<AllPage> createState() => _AllPageState();
 }
-final contrel=PageController(initialPage: 0);
-final boumrdess=['images/roock.png','images/beach.png','images/city.png'];
-List<Map<String, dynamic>> LieuxTouristique_2 = [
+
+final contrel = PageController(initialPage: 0);
+final boumrdess = ['images/roock.png', 'images/beach.png', 'images/city.png'];
+final List<Map<String, dynamic>> locations = [
   {
-    'name': 'Elmnara',
-    'map_position': 'https://maps.app.goo.gl/mCxV8Gb6o7Bnk2MK8',
-    'position': 'Dellys - Boumerdes, Algeria',
-    'background': 'bg1.png'
+    "name": "El Walima Restaurant",
+    "position": [36.7525, 3.4708],
+    "locationString": "Boumerdes City Center",
+    "link": "https://www.google.com/maps/place/El+Walima+Restaurant,+Boumerdes,+Algeria",
+    "type": "Restaurant",
+    'image': 'images/restau.png',
   },
   {
-    'name': 'Phare de cap Bengut',
-    'map_position': 'https://maps.app.goo.gl/36B2BcopQKxXJqZTA',
-    'position': 'Dellys - Boumerdes, Algeria',
-    'background': 'bg2.png'
+    "name": "Le Chalet Gourmand",
+    "position": [36.7530, 3.4722],
+    "locationString": "Rue de la Gare, Boumerdes",
+    "link": "https://www.google.com/maps/place/Le+Chalet+Gourmand,+Boumerdes,+Algeria",
+    "type": "Club",
+    'image': 'images/club.png'
   },
   {
-    'name': 'Bouzegza Mountain',
-    'map_position': 'https://maps.app.goo.gl/9bheNvkHgmi1F97v6',
-    'position': 'Keddara Municipality-Boudouaou',
-    'background': 'bg3.png'
-  }
+    "name": "raudi",
+    "position": [36.7545, 3.4750],
+    "locationString": "Near Wilaya de Boumerdes",
+    "link": "https://www.google.com/maps/place/Bagna,+Boumerdes,+Algeria",
+    "type": "Restaurant",
+    'image': 'images/raudi.png'
+  },
 ];
-Future<void> _launchGoogleMaps(googleMapsUrl) async {
-  final Uri url = Uri.parse(googleMapsUrl);
 
-  if (await canLaunchUrl(url)) {
-    await launchUrl(url, mode: LaunchMode.externalApplication);
-  } else {
-    throw 'Could not launch $googleMapsUrl';
-  }
-}
-
-class _All_pageState extends State<All_page> {
+class _AllPageState extends State<AllPage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Container(
-            padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
+            padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
             alignment: Alignment.centerLeft,
-            child: Text('Ask Our AI'),
+            child: const Text('Ask Our AI'),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           GestureDetector(
-            onTap: (){
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ChatPage()));
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ChatPage()));
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -71,147 +63,104 @@ class _All_pageState extends State<All_page> {
                 width: MediaQuery.of(context).size.width,
                 height: 60,
                 decoration: BoxDecoration(
-                  color: Color(0xFFF2F2F2),
+                  color: const Color(0xFFF2F2F2),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 alignment: Alignment.center,
                 child: Row(
                   children: [
-                    Text('Message BSCAI',style:TextStyle(color: Colors.grey),),
-                    Spacer(),
-                    Image.asset('images/assistants.png',height: 30,width: 30,)
+                    const Text('Message BSCAI', style: TextStyle(color: Colors.grey)),
+                    const Spacer(),
+                    Image.asset('images/assistants.png', height: 30, width: 30),
                   ],
                 ),
               ),
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Container(
-            padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
+            padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
             alignment: Alignment.centerLeft,
-            child: Text('Boumerdes'),
+            child: const Text('Boumerdes',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Container(
             height: 181,
-            child:PageView.builder(
-              physics: NeverScrollableScrollPhysics(),
+            child: PageView.builder(
+              physics: const NeverScrollableScrollPhysics(),
               controller: contrel,
-              itemCount: 3,
-              itemBuilder:(context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10)
-                  ),
-                  child: Stack(
-                    children: [
-                      ClipRRect(borderRadius: BorderRadius.circular(15),child: Image.asset(boumrdess[index],fit: BoxFit.fill,width: double.infinity,height: double.infinity,)),
-                      Positioned(
-                        left: 10,
-                        right: 10,
-                        top: 55,
-                        child: Container(
-                          height: 80,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                               GestureDetector(
-                                 onTap: () {
-                                  contrel.animateToPage((index+2)%3, duration:Duration(microseconds: 100), curve:Curves.linear);
-                                 },
-                                 child: Container(
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: const Color.fromARGB(115, 255, 255, 255)
+              itemCount: boumrdess.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                    child: Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image.asset(
+                            boumrdess[index],
+                            fit: BoxFit.fill,
+                            width: double.infinity,
+                            height: double.infinity,
+                          ),
+                        ),
+                        Positioned(
+                          left: 10,
+                          right: 10,
+                          top: 55,
+                          child: Container(
+                            height: 80,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      contrel.animateToPage(
+                                        (index + 2) % 3,
+                                        duration: const Duration(milliseconds: 100),
+                                        curve: Curves.linear,
+                                      );
+                                    },
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Color.fromARGB(115, 255, 255, 255),
+                                      ),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Icon(Icons.navigate_before_rounded),
+                                      ),
+                                    ),
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Icon(Icons.navigate_before_rounded),
+                                  const Spacer(),
+                                  GestureDetector(
+                                    onTap: () {
+                                      contrel.animateToPage(
+                                        (index + 1) % 3,
+                                        duration: const Duration(milliseconds: 100),
+                                        curve: Curves.linear,
+                                      );
+                                    },
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Color.fromARGB(115, 255, 255, 255),
+                                      ),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Icon(Icons.navigate_next_rounded),
+                                      ),
+                                    ),
                                   ),
-                                 ),
-                               ),
-                                Spacer(),
-                                GestureDetector(
-                                onTap: () {
-                                    contrel.animateToPage((index+1)%3, duration:Duration(microseconds: 100), curve:Curves.linear);
-                                },
-                                 child: Container(
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: const Color.fromARGB(115, 255, 255, 255)
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Icon(Icons.navigate_next_rounded),
-                                  ),
-                                 ),
-                               ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },)
-          ),
-          SizedBox(height: 10),
-          Container(
-            padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
-            alignment: Alignment.centerLeft,
-                     ),
-          SizedBox(height: 10),
-          Container(
-            height: 200,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 3,
-              itemBuilder: (context, index) {
-                return Container(
-                  width: 200,
-                  height: 150,
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  decoration: BoxDecoration(
-                    color: Color(0xFFD9D9D9),
-                    borderRadius: BorderRadius.circular(28),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 18.0),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 100,
-                          width: 170,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20)
-                          ),
-                          child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset('assets/backgrounds/${LieuxTouristique_2[index]['background']}',fit: BoxFit.fill,)),
-                        ),
-                        SizedBox(height: 10,),
-                        Text(LieuxTouristique_2[index]['name']),
-                        SizedBox(height: 2,),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              GestureDetector(
-                                onTap: () async {
-                                await _launchGoogleMaps(
-                               LieuxTouristique_2[index]['map_position']);
-                },
-                                child: Image.asset('assets/icons/location.png',height: 17,width: 14,)),
-                              SizedBox(width: 5,),
-                              Text(LieuxTouristique_2[index]['position'],style: TextStyle(fontSize: 10, color: Colors.grey[800]),)
-                            ],
-                          ),
-                        )
                       ],
                     ),
                   ),
@@ -219,7 +168,92 @@ class _All_pageState extends State<All_page> {
               },
             ),
           ),
-          SizedBox(height: 10,)
+          const SizedBox(height: 10),
+          Align(alignment: Alignment.centerLeft,child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text('Complex Touristique', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          )),
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2, // Number of items per row
+              crossAxisSpacing: 10.0, // Space between items horizontally
+              mainAxisSpacing: 10.0, // Space between items vertically
+              childAspectRatio: 1.0, // Adjust this to control item height vs width
+            ),
+            itemCount: locations.length,
+            itemBuilder: (context, index) {
+              return Container(
+                margin: const EdgeInsets.symmetric(horizontal: 5),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color.fromARGB(212, 217, 217, 217), Color.fromARGB(140, 217, 217, 217)],
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                  ),
+                  borderRadius: BorderRadius.circular(28),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 100,
+                        width: 160,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(colors: [
+                            Colors.grey[200]!,
+                            const Color.fromARGB(0, 224, 224, 224),
+                          ]),
+                          borderRadius: BorderRadius.circular(20)),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.asset(
+                            locations[index]['image'],
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(locations[index]['name'],style:TextStyle(fontWeight: FontWeight.w700,color: Colors.grey[800])),
+                      SizedBox(height: 15,),
+                     Padding(
+                        padding: const EdgeInsets.symmetric(horizontal:15.0,vertical: 6),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: () async {
+                                if (locations[index]['link'] != null) {
+                                  final Uri url = Uri.parse(locations[index]['link']);
+                                  if (await canLaunchUrl(url)) {
+                                    await launchUrl(url);
+                                  }
+                                }
+                              },
+                              child: Text('Type :',style:TextStyle(fontSize: 12, color: Colors.grey[800],fontWeight: FontWeight.w700) ,)
+                            ),
+                            const SizedBox(width: 5),
+                            Text(
+                              "${locations[index]['type']}",
+                              style: TextStyle(fontSize: 12, color: Colors.black45),
+                            ),
+                            Spacer(),
+                            Image.asset('assets/icons/location.png',
+                                  height: 17, width: 14)
+
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 4,),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+          const SizedBox(height: 10),
         ],
       ),
     );

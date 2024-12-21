@@ -103,7 +103,6 @@ class _AccManegmentState extends State<AccManegment> {
                         ),
                         onTap: () {
                           context.read<UserBloc>().add(LogoutEvent());
-                         
                         },
                       ),
                      
