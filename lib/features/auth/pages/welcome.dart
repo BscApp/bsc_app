@@ -1,4 +1,5 @@
 import 'package:bsc_app/features/auth/model/user.dart';
+import 'package:bsc_app/features/auth/pages/login.dart';
 import 'package:bsc_app/features/auth/pages/register.dart';
 import 'package:flutter/material.dart';
 
@@ -53,6 +54,9 @@ class WelcomePage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: ElevatedButton(
                 onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context)=>LoginPage())
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(

@@ -19,6 +19,7 @@ final rmoteAuth=RemoteAuth();
     on<RegisterEvent>((event, emit) async {
       emit(UserLoading());
       try {
+        print('Trying');
         final user = await rmoteAuth.register(event.user);
         emit(UserLoaded(user: user));
       } catch (e) {
