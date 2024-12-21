@@ -22,26 +22,33 @@ class _All_pageState extends State<All_page> {
           Container(
             padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
             alignment: Alignment.centerLeft,
-            child: Text('Ask our IA'),
+            child: Text('Ask Our AI'),
           ),
           SizedBox(height: 10),
           GestureDetector(
             onTap: (){
-
-
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => ChatPage()));
             },
-            child: Container(
-              width: 490,
-              height: 90,
-              decoration: BoxDecoration(
-                color: Color(0xFFF2F2F2),
-                borderRadius: BorderRadius.circular(28),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 60,
+                decoration: BoxDecoration(
+                  color: Color(0xFFF2F2F2),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                padding: EdgeInsets.all(8),
+                alignment: Alignment.center,
+                child: Row(
+                  children: [
+                    Text('Message BSCAI',style:TextStyle(color: Colors.grey),),
+                    Spacer(),
+                    Image.asset('images/assistants.png',height: 30,width: 30,)
+                  ],
+                ),
               ),
-              padding: EdgeInsets.all(8),
-              alignment: Alignment.center,
-              child: Text('ask our ai'),
             ),
           ),
           SizedBox(height: 10),

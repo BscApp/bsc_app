@@ -1,3 +1,5 @@
+import 'package:bsc_app/features/auth/model/user.dart';
+import 'package:bsc_app/features/auth/pages/register.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -11,8 +13,8 @@ class WelcomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset('assets/icons/auth.png', height: 100),
-            SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 16),
+            const Text(
               'WELCOME TO BSC',
               style: TextStyle(
                   fontSize: 24,
@@ -20,42 +22,47 @@ class WelcomePage extends StatelessWidget {
                   fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 8),
-            Text(
+            const SizedBox(height: 8),
+            const Text(
               'Smart Tourism for a Smarter Wilaya Connecting\nPeople, Places, and Experiences',
               style: TextStyle(fontSize: 16),
               textAlign: TextAlign.center,
             ),
-            Spacer(),
+            const Spacer(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: ElevatedButton(
-                onPressed: () {},
-                child: Text(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>CreateAccountPage()));
+                  
+                },
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    backgroundColor: const Color(0xFF140C47),
+                    minimumSize: const Size(double.infinity, 50)),
+                child: const Text(
                   'SIGN UP',
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    backgroundColor: Color(0xFF140C47),
-                    minimumSize: Size(double.infinity, 50)),
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: ElevatedButton(
-                onPressed: () {},
-                child: Text(
-                  'LOG IN',
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
+                onPressed: () {
+                },
                 style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
-                    backgroundColor: Color(0xFF140C47),
-                    minimumSize: Size(double.infinity, 50)),
+                    backgroundColor: const Color(0xFF140C47),
+                    minimumSize: const Size(double.infinity, 50)),
+                child: const Text(
+                  'LOG IN',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
               ),
             ),
           ],
