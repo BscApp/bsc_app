@@ -4,6 +4,7 @@ import 'package:bsc_app/features/auth/pages/bloc/auth_bloc.dart';
 import 'package:bsc_app/features/auth/pages/bloc/auth_event.dart';
 import 'package:bsc_app/features/auth/pages/bloc/auth_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
@@ -59,28 +60,57 @@ class _WriteInformationPageState extends State<WriteInformationPage> {
                         fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 51),
-                  TextField(
-                    controller: PhoneNumberContoller,
-                    decoration: const InputDecoration(
-                      labelText: 'Phone Number',
-                      border: OutlineInputBorder(),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Phone ',
+                        style:
+                            TextStyle(fontSize: 16, color: Color(0xFF140C47))),
+                  ),
+                  SizedBox(height: 8),
+                  SizedBox(
+                    height: 50,
+                    child: TextField(
+                      keyboardType: TextInputType.phone,
+                      controller: PhoneNumberContoller,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 36),
-                  TextField(
-                    controller: DateOfBirthController,
-                    decoration: const InputDecoration(
-                      labelText: 'Date of birth (DD/MM/YYYY)',
-                      border: OutlineInputBorder(),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Date of Birth',
+                        style:
+                            TextStyle(fontSize: 16, color: Color(0xFF140C47))),
+                  ),
+                  SizedBox(height: 8),
+                  SizedBox(
+                    height: 50,
+                    child: TextField(
+                      inputFormatters: [DateInputFormatter()],
+                      keyboardType: TextInputType.datetime,
+                      controller: DateOfBirthController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                      ),
                     ),
-                    keyboardType: TextInputType.datetime,
                   ),
                   const SizedBox(height: 36),
-                  TextField(
-                    controller: IDCardNumberController,
-                    decoration: const InputDecoration(
-                      labelText: 'ID card number',
-                      border: OutlineInputBorder(),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('ID Card Number',
+                        style:
+                            TextStyle(fontSize: 16, color: Color(0xFF140C47))),
+                  ),
+                  SizedBox(height: 8),
+                  SizedBox(
+                    height: 50,
+                    child: TextField(
+                      controller: IDCardNumberController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                      ),
                     ),
                   ),
                   const Spacer(),
@@ -115,5 +145,26 @@ class _WriteInformationPageState extends State<WriteInformationPage> {
                 ],
               ),
             )));
+  }
+}
+
+class DateInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    final text = newValue.text.replaceAll(RegExp(r'[^0-9]'), '');
+
+    final buffer = StringBuffer();
+    for (int i = 0; i < text.length; i++) {
+      if (i == 2 || i == 4) {
+        buffer.write('/');
+      }
+      buffer.write(text[i]);
+    }
+
+    return TextEditingValue(
+      text: buffer.toString(),
+      selection: TextSelection.collapsed(offset: buffer.length),
+    );
   }
 }
