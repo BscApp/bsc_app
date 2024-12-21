@@ -7,11 +7,13 @@ class CreateAccountPage extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -97,70 +99,73 @@ class CreateAccountPage extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            ElevatedButton(
-              onPressed: () {
-                final userDto = User(
-                  firstName: nameController.text,
-                  lastName: nameController.text,
-                  email: emailController.text,
-                  password: passwordController.text,
-                  phone: "",
-                  dateOfBirth: DateTime.now(),
-                  placeOfBirth: "",
-                  cardId: "",
-                  sex: "Male",
-                );
-
-                if (userDto.firstName.isNotEmpty &&
-                    userDto.lastName.isNotEmpty &&
-                    userDto.email.isNotEmpty &&
-                    userDto.password.isNotEmpty) {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => WriteInformationPage(user: userDto),
-                    ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: ElevatedButton(
+                onPressed: () {
+                  final userDto = User(
+                    firstName: nameController.text,
+                    lastName: nameController.text,
+                    email: emailController.text,
+                    password: passwordController.text,
+                    phone: "",
+                    dateOfBirth: DateTime.now(),
+                    placeOfBirth: "",
+                    cardId: "",
+                    sex: "Male",
                   );
-                }
-              },
-              child: const Text(
-                'NEXT',
-                style: TextStyle(color: Colors.white, fontSize: 18),
+
+                  if (userDto.firstName.isNotEmpty &&
+                      userDto.lastName.isNotEmpty &&
+                      userDto.email.isNotEmpty &&
+                      userDto.password.isNotEmpty) {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            WriteInformationPage(user: userDto),
+                      ),
+                    );
+                  }
+                },
+                child: const Text(
+                  'NEXT',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    backgroundColor: const Color(0xFF140C47),
+                    minimumSize: const Size(double.infinity, 50)),
               ),
-              style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  backgroundColor: const Color(0xFF140C47),
-                  minimumSize: const Size(double.infinity, 50)),
             ),
             const SizedBox(height: 8),
-               Row(
-  mainAxisAlignment: MainAxisAlignment.center, // Center the row content
-  children: [
-    // First part of the text
-    Text(
-      'Have an account already? ',
-      style: TextStyle(color: Color(0xFF140C47), fontSize: 16),
-    ),
-    // Second part of the text with underline and bold styling
-    GestureDetector(
-      onTap: () {
-        // Add your navigation or action here
-        Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context)=>LoginPage())
-                  );
-      },
-      child: Text(
-        'Log in',
-        style: TextStyle(
-          color: Color(0xFF140C47),
-          fontWeight: FontWeight.bold,
-          decoration: TextDecoration.underline,
-        ),
-      ),
-    ),
-  ],
-)
-
+            Row(
+              mainAxisAlignment:
+                  MainAxisAlignment.center, // Center the row content
+              children: [
+                // First part of the text
+                Text(
+                  'Have an account already? ',
+                  style: TextStyle(color: Color(0xFF140C47), fontSize: 16),
+                ),
+                // Second part of the text with underline and bold styling
+                GestureDetector(
+                  onTap: () {
+                    // Add your navigation or action here
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => LoginPage()));
+                  },
+                  child: Text(
+                    'Log in',
+                    style: TextStyle(
+                      color: Color(0xFF140C47),
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),

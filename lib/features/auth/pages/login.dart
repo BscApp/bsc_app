@@ -1,4 +1,5 @@
 import 'package:bsc_app/features/Servises/pages/navigation.dart';
+import 'package:bsc_app/features/auth/model/user.dart';
 import 'package:bsc_app/features/auth/pages/bloc/auth_bloc.dart';
 import 'package:bsc_app/features/auth/pages/bloc/auth_event.dart';
 import 'package:bsc_app/features/auth/pages/bloc/auth_state.dart';
@@ -13,6 +14,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: BlocListener<UserBloc, UserState>(
         listener: (context, state) {
           if (state is UserError) {
@@ -68,8 +70,19 @@ class LoginPage extends StatelessWidget {
                 onPressed: () {
                   if (EmailController.text == "admin" &&
                       PasswordController.text == "admin") {
-                    Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => HomePage()));
+                          context.read<UserBloc>().add(updateUser(user: User(
+                            firstName: 'islam', 
+                            lastName: 'amour', 
+                            email: 'maymail', 
+                            password: 'my password', 
+                            phone: 'my phone', 
+                            dateOfBirth: DateTime.now(), 
+                            placeOfBirth: 'placeOfBirth', 
+                            cardId: 'cardId', 
+                            sex: 'sex'
+                          )));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomePage()));
                   } else {
                     context.read<UserBloc>().add(LoginEvent(
                         email: EmailController.text,
@@ -89,8 +102,8 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 8),
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => CreateAccountPage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => CreateAccountPage()));
                 },
                 child: const Text('Don’t have an account? Sign up now'),
               ),

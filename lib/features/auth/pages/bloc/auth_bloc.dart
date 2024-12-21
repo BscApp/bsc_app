@@ -4,9 +4,9 @@ import 'package:bsc_app/features/auth/pages/bloc/auth_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserBloc extends Bloc<UserEvents, UserState> {
-final rmoteAuth=RemoteAuth();
+  final rmoteAuth = RemoteAuth();
 
-  UserBloc():super(UserInitial()){
+  UserBloc() : super(UserInitial()) {
     on<LoginEvent>((event, emit) async {
       emit(UserLoading());
       try {
@@ -29,20 +29,19 @@ final rmoteAuth=RemoteAuth();
     on<LogoutEvent>((event, emit) async {
       emit(UserInitial());
     });
-    
-   on<deleteAccount>((event,emit)async{
-      try{
-        if (state is UserLoaded){
- final id=(state as UserLoaded).user.cardId; 
-       await rmoteAuth.delAccount(id)       ;  
 
+    on<deleteAccount>((event, emit) async {
+      try {
+        if (state is UserLoaded) {
+          final id = (state as UserLoaded).user.cardId;
+          await rmoteAuth.delAccount(id);
         }
-             
-      }catch(e){
-      emit(UserError(message:e.toString()));
+      } catch (e) {
+        emit(UserError(message: e.toString()));
       }
-    }); 
-  } 
-
-
-    }
+    });
+    on<updateUser>((event, emit) async {
+      emit(UserLoaded(user: event.user));
+    });
+  }
+}
