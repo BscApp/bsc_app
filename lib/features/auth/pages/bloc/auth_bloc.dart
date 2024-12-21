@@ -43,5 +43,15 @@ class UserBloc extends Bloc<UserEvents, UserState> {
     on<updateUser>((event, emit) async {
       emit(UserLoaded(user: event.user));
     });
+    on<changeUserField>((event, emit) async {
+     try {
+           final res=rmoteAuth.UpdateUser(event.user);
+        //Here you should Emit the response not the user.event
+           emit(UserLoaded(user: event.user));
+          } catch (e) {
+            emit(UserError(message: e.toString())); 
+          }
+    });
   }
+  
 }

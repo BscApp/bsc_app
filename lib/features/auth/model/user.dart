@@ -55,4 +55,32 @@ class User {
       if (token != null) 'Token': token,
     };
   }
+
+  // Method to create a copy of the User object with updated fields
+  User copyWith({
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? password,
+    String? phone,
+    DateTime? dateOfBirth,
+    String? placeOfBirth,
+    String? cardId,
+    String? sex,
+    String? token,
+  }) {
+    return User(
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      email: email ?? this.email,
+      password: password ?? this.password,
+      phone: phone ?? this.phone,
+      dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+      placeOfBirth: placeOfBirth ?? this.placeOfBirth,
+      cardId: cardId ?? this.cardId,
+      sex: sex ?? this.sex,
+      token: token ?? this.token,
+    );
+  }
 }
+

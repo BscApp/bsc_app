@@ -21,3 +21,7 @@ class updateUser extends UserEvents {
   final User user;
   updateUser({required this.user});
 }
+class changeUserField extends UserEvents {
+  final User user;
+  changeUserField({required this.user});
+}
