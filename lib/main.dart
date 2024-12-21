@@ -22,7 +22,7 @@ void main() {
         // Your existing BLoC providers
         BlocProvider(create: (context) => AiBloc(AiRepo())),
         BlocProvider(create: (context) => HebergeBloc()),
-        BlocProvider(create: (context)=>UserBloc()),
+        BlocProvider(create: (context) => UserBloc()),
 
         // Add your ChangeNotifier provider for the simple state management
         ChangeNotifierProvider(
