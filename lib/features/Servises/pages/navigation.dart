@@ -57,9 +57,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       
       
-      floatingActionButton: FloatingActionButton(onPressed: () { 
-      }),
-      appBar: PreferredSize(
+            appBar: PreferredSize(
         preferredSize: const Size.fromHeight(40.0), // set the height here
         child: AppBar(
         automaticallyImplyLeading: false,
@@ -127,6 +125,7 @@ class _HomePageState extends State<HomePage> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(30),
           child: BottomNavigationBar(
+          
             showSelectedLabels: false,
             showUnselectedLabels: false,
             currentIndex: context.watch<state>().current,
