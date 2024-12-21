@@ -77,7 +77,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             )),
             Tab(
                 child: Text(
-              'Lieu Touristique',
+              'Lieux Touristique',
             )),
           ],
         ),
