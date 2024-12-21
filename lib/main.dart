@@ -39,18 +39,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(splashColor: Colors.transparent),
-      home: BlocBuilder<UserBloc,UserState>(
-        builder: (context,st) {
-        if (st is UserInitial){
-        return WelcomePage();
-        }
-        if (st is UserLoaded){
-
-          return HomePage();
-        }
-        return WelcomePage();
-        }
-      ),
+      home: HomePage(),
     );
   }
 }

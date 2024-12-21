@@ -1,5 +1,6 @@
 import 'package:bsc_app/ai/ui/pages/ai_page.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class All_page extends StatefulWidget {
   final TabController tabController;
@@ -10,6 +11,35 @@ class All_page extends StatefulWidget {
 }
 final contrel=PageController(initialPage: 0);
 final boumrdess=['images/roock.png','images/beach.png','images/city.png'];
+List<Map<String, dynamic>> LieuxTouristique_2 = [
+  {
+    'name': 'Elmnara',
+    'map_position': 'https://maps.app.goo.gl/mCxV8Gb6o7Bnk2MK8',
+    'position': 'Dellys - Boumerdes, Algeria',
+    'background': 'bg1.png'
+  },
+  {
+    'name': 'Phare de cap Bengut',
+    'map_position': 'https://maps.app.goo.gl/36B2BcopQKxXJqZTA',
+    'position': 'Dellys - Boumerdes, Algeria',
+    'background': 'bg2.png'
+  },
+  {
+    'name': 'Bouzegza Mountain',
+    'map_position': 'https://maps.app.goo.gl/9bheNvkHgmi1F97v6',
+    'position': 'Keddara Municipality-Boudouaou',
+    'background': 'bg3.png'
+  }
+];
+Future<void> _launchGoogleMaps(googleMapsUrl) async {
+  final Uri url = Uri.parse(googleMapsUrl);
+
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url, mode: LaunchMode.externalApplication);
+  } else {
+    throw 'Could not launch $googleMapsUrl';
+  }
+}
 
 class _All_pageState extends State<All_page> {
   @override
@@ -150,7 +180,7 @@ class _All_pageState extends State<All_page> {
             height: 200,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 10,
+              itemCount: 2,
               itemBuilder: (context, index) {
                 return Container(
                   width: 200,
@@ -208,7 +238,7 @@ class _All_pageState extends State<All_page> {
             height: 200,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 10,
+              itemCount: 3,
               itemBuilder: (context, index) {
                 return Container(
                   width: 200,
@@ -223,16 +253,32 @@ class _All_pageState extends State<All_page> {
                     child: Column(
                       children: [
                         Container(
-                       
                           height: 100,
                           width: 170,
                           decoration: BoxDecoration(
-                            color: Colors.amberAccent,
                             borderRadius: BorderRadius.circular(20)
                           ),
+                          child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset('assets/backgrounds/${LieuxTouristique_2[index]['background']}',fit: BoxFit.fill,)),
                         ),
                         SizedBox(height: 10,),
-                        Text('The name of the place')
+                        Text(LieuxTouristique_2[index]['name']),
+                        SizedBox(height: 2,),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              GestureDetector(
+                                onTap: () async {
+                                await _launchGoogleMaps(
+                               LieuxTouristique_2[index]['map_position']);
+                },
+                                child: Image.asset('assets/icons/location.png',height: 17,width: 14,)),
+                              SizedBox(width: 5,),
+                              Text(LieuxTouristique_2[index]['position'],style: TextStyle(fontSize: 10, color: Colors.grey[800]),)
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   ),
