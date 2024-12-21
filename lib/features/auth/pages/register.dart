@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class CreateAccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -7,7 +8,12 @@ class CreateAccountPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Image.asset('assets/icons/auth.png', height: 100),
+            SizedBox(height: 40),
+            Image.asset(
+              'assets/icons/auth.png',
+              height: 73,
+              width: 183,
+            ),
             SizedBox(height: 16),
             Text(
               'Create An Account',
@@ -16,38 +22,64 @@ class CreateAccountPage extends StatelessWidget {
                   fontSize: 18,
                   fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 51),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Name',
-                border: OutlineInputBorder(),
-                labelStyle: TextStyle(color: Colors.grey),
+            SizedBox(height: 60),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text('Name',
+                  style: TextStyle(fontSize: 16, color: Color(0xFF140C47))),
+            ),
+            SizedBox(height: 8),
+            SizedBox(
+              height: 50,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
               ),
             ),
-            SizedBox(height: 30),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Email Address',
-                border: OutlineInputBorder(),
-                labelStyle: TextStyle(color: Colors.grey),
+            SizedBox(height: 20),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text('Email Address',
+                  style: TextStyle(fontSize: 16, color: Color(0xFF140C47))),
+            ),
+            SizedBox(height: 8),
+            SizedBox(
+              height: 50,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
               ),
             ),
-            SizedBox(height: 30),
-            TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(),
-                labelStyle: TextStyle(color: Colors.grey),
+            SizedBox(height: 20),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text('Password',
+                  style: TextStyle(fontSize: 16, color: Color(0xFF140C47))),
+            ),
+            SizedBox(height: 8),
+            SizedBox(
+              height: 50,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
               ),
             ),
-            SizedBox(height: 30),
-            TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Confirm Password',
-                border: OutlineInputBorder(),
-                labelStyle: TextStyle(color: Colors.grey),
+            SizedBox(height: 20),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text('confirm Password',
+                  style: TextStyle(fontSize: 16, color: Color(0xFF140C47))),
+            ),
+            SizedBox(height: 8),
+            SizedBox(
+              height: 50,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
               ),
             ),
             Spacer(),
@@ -66,7 +98,22 @@ class CreateAccountPage extends StatelessWidget {
             SizedBox(height: 8),
             TextButton(
               onPressed: () {},
-              child: Text('Have an account already? Log in'),
+              child: RichText(
+                text: TextSpan(
+                  text: 'Have an account already? ',
+                  style: TextStyle(color: Color(0xFF140C47), fontSize: 16),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'Log in',
+                      style: TextStyle(
+                        color: Color(0xFF140C47),
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

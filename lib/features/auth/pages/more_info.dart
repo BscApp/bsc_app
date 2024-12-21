@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class WriteInformationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,24 +17,50 @@ class WriteInformationPage extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 51),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Phone Number',
-                border: OutlineInputBorder(),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text('Phone Number',
+                  style: TextStyle(fontSize: 16, color: Color(0xFF140C47))),
+            ),
+            SizedBox(height: 8),
+            SizedBox(
+              height: 50,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
               ),
             ),
             SizedBox(height: 36),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Date of birth (DD/MM/YY)',
-                border: OutlineInputBorder(),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text('Date of Birth',
+                  style: TextStyle(fontSize: 16, color: Color(0xFF140C47))),
+            ),
+            SizedBox(height: 8),
+            SizedBox(
+              height: 50,
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'DD/MM/YYYY',
+                  border: OutlineInputBorder(),
+                ),
               ),
             ),
             SizedBox(height: 36),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'ID card number',
-                border: OutlineInputBorder(),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text('ID Card Number',
+                  style: TextStyle(fontSize: 16, color: Color(0xFF140C47))),
+            ),
+            SizedBox(height: 8),
+            SizedBox(
+              height: 50,
+              child: TextField(
+                decoration: InputDecoration(
+                  
+                  border: OutlineInputBorder(),
+                ),
               ),
             ),
             Spacer(),
