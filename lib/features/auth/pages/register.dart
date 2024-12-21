@@ -1,5 +1,12 @@
+import 'package:bsc_app/features/auth/model/user.dart';
+import 'package:bsc_app/features/auth/pages/more_info.dart';
 import 'package:flutter/material.dart';
 class CreateAccountPage extends StatelessWidget {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -8,32 +15,35 @@ class CreateAccountPage extends StatelessWidget {
         child: Column(
           children: [
             Image.asset('assets/icons/auth.png', height: 100),
-            SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 16),
+            const Text(
               'Create An Account',
-              style: TextStyle(
+              style: const TextStyle(
                   color: Color(0xFF140C47),
                   fontSize: 18,
                   fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 51),
+            const SizedBox(height: 51),
             TextField(
+              controller: nameController,
               decoration: InputDecoration(
                 labelText: 'Name',
                 border: OutlineInputBorder(),
                 labelStyle: TextStyle(color: Colors.grey),
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             TextField(
+              controller: emailController,
               decoration: InputDecoration(
                 labelText: 'Email Address',
                 border: OutlineInputBorder(),
                 labelStyle: TextStyle(color: Colors.grey),
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             TextField(
+              controller: passwordController,
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Password',
@@ -41,8 +51,9 @@ class CreateAccountPage extends StatelessWidget {
                 labelStyle: TextStyle(color: Colors.grey),
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             TextField(
+              controller: confirmPasswordController,
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Confirm Password',
@@ -50,23 +61,31 @@ class CreateAccountPage extends StatelessWidget {
                 labelStyle: TextStyle(color: Colors.grey),
               ),
             ),
-            Spacer(),
+            const Spacer(),
             ElevatedButton(
-              onPressed: () {},
-              child: Text(
+              onPressed: () {
+                final userDto=User(firstName:nameController.text, lastName: nameController.text, email:emailController.text, password: passwordController.text, phone: "", dateOfBirth:DateTime.now(), placeOfBirth: "", cardId: "", sex: "Male");
+
+   if (userDto.firstName.isNotEmpty && userDto.lastName.isNotEmpty && userDto.email.isNotEmpty && userDto.password.isNotEmpty) {
+   Navigator.of(context).push(MaterialPageRoute(builder: (context) =>WriteInformationPage(user:userDto)));
+   }
+              },
+              child: const Text(
                 'NEXT',
                 style: TextStyle(color: Colors.white, fontSize: 18),
               ),
               style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
-                  backgroundColor: Color(0xFF140C47),
-                  minimumSize: Size(double.infinity, 50)),
+                  backgroundColor: const Color(0xFF140C47),
+                  minimumSize: const Size(double.infinity, 50)),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             TextButton(
-              onPressed: () {},
-              child: Text('Have an account already? Log in'),
+              onPressed: () {
+              
+              },
+              child: const Text('Have an account already? Log in'),
             ),
           ],
         ),

@@ -4,7 +4,7 @@ class User {
   final String lastName;
   final String email;
   final String password;
-  final int phone;
+  final String phone;
   final DateTime dateOfBirth;
   final String placeOfBirth;
   final String cardId;
@@ -31,7 +31,7 @@ class User {
       lastName: json['LastName'] as String,
       email: json['Email'] as String,
       password: json['Password'] as String,
-      phone: json['Phone'] as int,
+      phone: json['Phone'] as String,
       dateOfBirth: DateTime.parse(json['DateOfBirth']),
       placeOfBirth: json['PlaceofBirth'] as String,
       cardId: json['cardId'] as String,
