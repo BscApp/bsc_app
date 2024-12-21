@@ -13,14 +13,15 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocListener<UserBloc,UserState>(
+      body: BlocListener<UserBloc, UserState>(
         listener: (context, state) {
           if (state is UserError) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
           }
           if (state is UserLoaded) {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage()));
           }
         },
         child: Padding(
@@ -64,30 +65,32 @@ class LoginPage extends StatelessWidget {
               ),
               const Spacer(),
               ElevatedButton(
-                  onPressed: () {
-                  if (EmailController.text=="admin" && PasswordController.text=="admin"){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+                onPressed: () {
+                  if (EmailController.text == "admin" &&
+                      PasswordController.text == "admin") {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => HomePage()));
+                  } else {
+                    context.read<UserBloc>().add(LoginEvent(
+                        email: EmailController.text,
+                        password: PasswordController.text));
                   }
-                  else
-                  context.read<UserBloc>().add(LoginEvent(
-                      email: EmailController.text,
-                      password: PasswordController.text));
                 },
-                  style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      backgroundColor: const Color(0xFF140C47),
-                      minimumSize: const Size(double.infinity, 50)),
-                  child: const Text(
-                    'LOG IN',
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  )),
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    backgroundColor: const Color(0xFF140C47),
+                    minimumSize: const Size(double.infinity, 50)),
+                child: const Text(
+                  'LOG IN',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+              ),
               const SizedBox(height: 8),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context)=>CreateAccountPage())
-                  );
+                      MaterialPageRoute(builder: (context) => CreateAccountPage()));
                 },
                 child: const Text('Don’t have an account? Sign up now'),
               ),

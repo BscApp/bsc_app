@@ -1,10 +1,6 @@
 import 'package:bsc_app/ai/ui/pages/ai_page.dart';
-import 'package:bsc_app/hebergement/ui/bloc/heberge_bloc.dart';
-import 'package:bsc_app/hebergement/ui/bloc/heberge_state.dart';
-import 'package:bsc_app/hebergement/ui/widgets/hebergeMiniCard.dart';
-import 'package:bsc_app/hebergement/ui/widgets/hotelListTile.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class All_page extends StatefulWidget {
   final TabController tabController;
@@ -15,6 +11,35 @@ class All_page extends StatefulWidget {
 }
 final contrel=PageController(initialPage: 0);
 final boumrdess=['images/roock.png','images/beach.png','images/city.png'];
+List<Map<String, dynamic>> LieuxTouristique_2 = [
+  {
+    'name': 'Elmnara',
+    'map_position': 'https://maps.app.goo.gl/mCxV8Gb6o7Bnk2MK8',
+    'position': 'Dellys - Boumerdes, Algeria',
+    'background': 'bg1.png'
+  },
+  {
+    'name': 'Phare de cap Bengut',
+    'map_position': 'https://maps.app.goo.gl/36B2BcopQKxXJqZTA',
+    'position': 'Dellys - Boumerdes, Algeria',
+    'background': 'bg2.png'
+  },
+  {
+    'name': 'Bouzegza Mountain',
+    'map_position': 'https://maps.app.goo.gl/9bheNvkHgmi1F97v6',
+    'position': 'Keddara Municipality-Boudouaou',
+    'background': 'bg3.png'
+  }
+];
+Future<void> _launchGoogleMaps(googleMapsUrl) async {
+  final Uri url = Uri.parse(googleMapsUrl);
+
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url, mode: LaunchMode.externalApplication);
+  } else {
+    throw 'Could not launch $googleMapsUrl';
+  }
+}
 
 class _All_pageState extends State<All_page> {
   @override
@@ -23,43 +48,50 @@ class _All_pageState extends State<All_page> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(height: 10),
+          SizedBox(height: 10),
           Container(
-            padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+            padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
             alignment: Alignment.centerLeft,
-            child: const Text('Ask our IA'),
+            child: Text('Ask Our AI'),
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10),
           GestureDetector(
             onTap: (){
-
-
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => const ChatPage()));
+            .push(MaterialPageRoute(builder: (context) => ChatPage()));
             },
-            child: Container(
-              width: 490,
-              height: 90,
-              decoration: BoxDecoration(
-                color: const Color(0xFFF2F2F2),
-                borderRadius: BorderRadius.circular(28),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 60,
+                decoration: BoxDecoration(
+                  color: Color(0xFFF2F2F2),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                padding: EdgeInsets.all(8),
+                alignment: Alignment.center,
+                child: Row(
+                  children: [
+                    Text('Message BSCAI',style:TextStyle(color: Colors.grey),),
+                    Spacer(),
+                    Image.asset('images/assistants.png',height: 30,width: 30,)
+                  ],
+                ),
               ),
-              padding: const EdgeInsets.all(8),
-              alignment: Alignment.center,
-              child: const Text('ask our ai'),
             ),
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10),
           Container(
-            padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+            padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
             alignment: Alignment.centerLeft,
-            child: const Text('Boumerdes'),
+            child: Text('Boumerdes'),
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10),
           Container(
             height: 181,
             child:PageView.builder(
-              physics: const NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               controller: contrel,
               itemCount: 3,
               itemBuilder:(context, index) {
@@ -84,31 +116,31 @@ class _All_pageState extends State<All_page> {
                               children: [
                                GestureDetector(
                                  onTap: () {
-                                  contrel.animateToPage((index+2)%3, duration:const Duration(microseconds: 100), curve:Curves.linear);
+                                  contrel.animateToPage((index+2)%3, duration:Duration(microseconds: 100), curve:Curves.linear);
                                  },
                                  child: Container(
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: Color.fromARGB(115, 255, 255, 255)
+                                    color: const Color.fromARGB(115, 255, 255, 255)
                                   ),
-                                  child: const Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Icon(Icons.navigate_before_rounded),
                                   ),
                                  ),
                                ),
-                                const Spacer(),
+                                Spacer(),
                                 GestureDetector(
                                 onTap: () {
-                                    contrel.animateToPage((index+1)%3, duration:const Duration(microseconds: 100), curve:Curves.linear);
+                                    contrel.animateToPage((index+1)%3, duration:Duration(microseconds: 100), curve:Curves.linear);
                                 },
                                  child: Container(
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: Color.fromARGB(115, 255, 255, 255)
+                                    color: const Color.fromARGB(115, 255, 255, 255)
                                   ),
-                                  child: const Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Icon(Icons.navigate_next_rounded),
                                   ),
                                  ),
@@ -124,80 +156,38 @@ class _All_pageState extends State<All_page> {
               );
             },)
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10),
           Container(
-            padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+            padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
             alignment: Alignment.centerLeft,
             child: Row(
               children: [
-                const Text('hebergements'),
-                const Spacer(),
+                Text('hebergements'),
+                Spacer(),
                 GestureDetector(
                   onTap: () {
                     setState(() {
                       widget.tabController.animateTo(2);
                     });
                   },
-                  child: const Text('See all')),
-                const Icon(Icons.navigate_next_rounded)
+                  child: Text('See all')),
+                Icon(Icons.navigate_next_rounded)
               ],
             ),
           ),
-          const SizedBox(height: 10),
-          BlocBuilder<HebergeBloc,HebergeState>(
-            builder: (context,state) {
-            if (state is HebergeStateSuccess){
-  return SizedBox(
-  height:300,
-    child: ListView.builder(
-     scrollDirection: Axis.horizontal,
-     itemCount:state.heberges.length ,
-     itemBuilder: (context,index)=>
-     MiniCard(heberge: state.heberges[index]),
-  ));
-
-            }
-            if (state is HebergeStateLoading){
-             return CircularProgressIndicator.adaptive();
-            }
-            if (state is HebergeStateError){
-            return Text(state.message);
-            }
-            return Text('Unexpected State');
-                        }
-          ),
-          const SizedBox(height: 10),
-          Container(
-            padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
-            alignment: Alignment.centerLeft,
-            child: Row(
-              children: [
-                const Text('Lieux touristique'),
-                const Spacer(),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      widget.tabController.animateTo(4);
-                    });
-                  },
-                  child: const Text('See all')),
-                const Icon(Icons.navigate_next_rounded)
-              ],
-            ),
-          ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10),
           Container(
             height: 200,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 10,
+              itemCount: 2,
               itemBuilder: (context, index) {
                 return Container(
                   width: 200,
-                  height: 150,
-                  margin: const EdgeInsets.symmetric(horizontal: 5),
+                  height: 200,
+                  margin: EdgeInsets.symmetric(horizontal: 5),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFD9D9D9),
+                    color: Color(0xFFD9D9D9),
                     borderRadius: BorderRadius.circular(28),
                   ),
                   child: Padding(
@@ -213,8 +203,10 @@ class _All_pageState extends State<All_page> {
                             borderRadius: BorderRadius.circular(20)
                           ),
                         ),
-                        const SizedBox(height: 10,),
-                        const Text('The name of the place')
+                        SizedBox(height: 10,),
+                        Text('The name of the place'),
+                        SizedBox(height: 2,),
+                        Text('Type: Camp'),
                       ],
                     ),
                   ),
@@ -222,7 +214,79 @@ class _All_pageState extends State<All_page> {
               },
             ),
           ),
-          const SizedBox(height: 10,)
+          SizedBox(height: 10),
+          Container(
+            padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
+            alignment: Alignment.centerLeft,
+            child: Row(
+              children: [
+                Text('Lieux touristique'),
+                Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      widget.tabController.animateTo(4);
+                    });
+                  },
+                  child: Text('See all')),
+                Icon(Icons.navigate_next_rounded)
+              ],
+            ),
+          ),
+          SizedBox(height: 10),
+          Container(
+            height: 200,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 3,
+              itemBuilder: (context, index) {
+                return Container(
+                  width: 200,
+                  height: 150,
+                  margin: EdgeInsets.symmetric(horizontal: 5),
+                  decoration: BoxDecoration(
+                    color: Color(0xFFD9D9D9),
+                    borderRadius: BorderRadius.circular(28),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 18.0),
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 100,
+                          width: 170,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20)
+                          ),
+                          child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset('assets/backgrounds/${LieuxTouristique_2[index]['background']}',fit: BoxFit.fill,)),
+                        ),
+                        SizedBox(height: 10,),
+                        Text(LieuxTouristique_2[index]['name']),
+                        SizedBox(height: 2,),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              GestureDetector(
+                                onTap: () async {
+                                await _launchGoogleMaps(
+                               LieuxTouristique_2[index]['map_position']);
+                },
+                                child: Image.asset('assets/icons/location.png',height: 17,width: 14,)),
+                              SizedBox(width: 5,),
+                              Text(LieuxTouristique_2[index]['position'],style: TextStyle(fontSize: 10, color: Colors.grey[800]),)
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          SizedBox(height: 10,)
         ],
       ),
     );
