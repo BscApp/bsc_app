@@ -13,7 +13,6 @@ class ProfilePage extends StatelessWidget {
   final Map<String, dynamic> infoRoutes = {
     'Name': NamePage(),
     'Email': EmailPage(),
-    'ID card Number': ID_Card_NumPage(),
     'Phone Number': phonePage(),
     'Date of birth': BirthDayPage(),
   };

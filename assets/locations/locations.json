@@ -1,0 +1,73 @@
+[
+  {
+    "name": "Albatros Beach Hotel",
+    "type": "hotel",
+    "latitude": 36.7598,
+    "longitude": 3.4715,
+    "google_maps_link": "https://www.google.com/maps?q=36.7598,3.4715"
+  },
+  {
+    "name": "Hotel Leïla",
+    "type": "hotel",
+    "latitude": 36.7523,
+    "longitude": 3.4702,
+    "google_maps_link": "https://www.google.com/maps?q=36.7523,3.4702"
+  },
+  {
+    "name": "Medina Hotel",
+    "type": "hotel",
+    "latitude": 36.7641,
+    "longitude": 3.4779,
+    "google_maps_link": "https://www.google.com/maps?q=36.7641,3.4779"
+  },
+  {
+    "name": "Palm Beach Hotel",
+    "type": "hotel",
+    "latitude": 36.7556,
+    "longitude": 3.4792,
+    "google_maps_link": "https://www.google.com/maps?q=36.7556,3.4792"
+  },
+  {
+    "name": "Auberge de Zemmouri",
+    "type": "auberge",
+    "latitude": 36.7932,
+    "longitude": 3.5521,
+    "google_maps_link": "https://www.google.com/maps?q=36.7932,3.5521"
+  },
+  {
+    "name": "Chez Nour Restaurant",
+    "type": "restaurant",
+    "latitude": 36.7634,
+    "longitude": 3.4745,
+    "google_maps_link": "https://www.google.com/maps?q=36.7634,3.4745"
+  },
+  {
+    "name": "La Sirène Restaurant",
+    "type": "restaurant",
+    "latitude": 36.7612,
+    "longitude": 3.4738,
+    "google_maps_link": "https://www.google.com/maps?q=36.7612,3.4738"
+  },
+  {
+    "name": "El Bahia Restaurant",
+    "type": "restaurant",
+    "latitude": 36.7589,
+    "longitude": 3.4726,
+    "google_maps_link": "https://www.google.com/maps?q=36.7589,3.4726"
+  },
+  {
+    "name": "Restaurant La Terrasse",
+    "type": "restaurant",
+    "latitude": 36.7567,
+    "longitude": 3.4719,
+    "google_maps_link": "https://www.google.com/maps?q=36.7567,3.4719"
+  },
+  {
+    "name": "La Réserve Restaurant",
+    "type": "restaurant",
+    "latitude": 36.7545,
+    "longitude": 3.4712,
+    "google_maps_link": "https://www.google.com/maps?q=36.7545,3.4712"
+  }
+
+]
