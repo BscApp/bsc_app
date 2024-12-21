@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       home: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) {
           if (state is UserInitial) {
-            return HomePage();
+            return WelcomePage();
           }
           if (state is UserLoaded) {
             return HomePage();
