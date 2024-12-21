@@ -3,6 +3,9 @@ import 'package:bsc_app/ai/ui/bloc/ai_bloc.dart';
 import 'package:bsc_app/features/Servises/logic/nav.dart';
 import 'package:bsc_app/features/Servises/pages/homesubpages/hebergement.dart';
 import 'package:bsc_app/features/Servises/pages/navigation.dart';
+import 'package:bsc_app/features/auth/pages/bloc/auth_bloc.dart';
+import 'package:bsc_app/features/auth/pages/bloc/auth_state.dart';
+import 'package:bsc_app/features/auth/pages/welcome.dart';
 
 import 'package:bsc_app/hebergement/ui/bloc/heberge_bloc.dart';
 
@@ -20,6 +23,7 @@ import 'package:provider/provider.dart';
         // Your existing BLoC providers
         BlocProvider(create: (context) => AiBloc(AiRepo())),
         BlocProvider(create: (context) => HebergeBloc()),
+        BlocProvider(create: (context)=>UserBloc()),
 
         // Add your ChangeNotifier provider for the simple state management
         ChangeNotifierProvider(create:(context) => state(),), // Add your provider here
@@ -35,7 +39,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(splashColor: Colors.transparent),
-      home: HomePage(),
+      home: BlocBuilder<UserBloc,UserState>(
+        builder: (context,st) {
+        if (st is UserInitial){
+        return WelcomePage();
+        }
+        if (st is UserLoaded){
+
+          return HomePage();
+        }
+        return WelcomePage();
+        }
+      ),
     );
   }
 }
