@@ -21,4 +21,8 @@ class RemoteAuth {
          return;
       }
   }
+  Future<User>UpdateUser(User user)async{
+    final response = await dio.put('/auth/user/${user.cardId}',data: user.toJson());
+    return User.fromJson(response.data);
+  }
 }
