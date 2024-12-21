@@ -21,14 +21,14 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back,color: Colors.grey,),
+          icon: const Icon(Icons.arrow_back,color: Color.fromARGB(255, 20, 12, 71),),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
-        title: const Text("BSCAI",style: TextStyle(color: Colors.grey),),
+        title: const Text("BSCAI",style: TextStyle(color: Color.fromARGB(255, 20, 12, 71)),),
         centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 20, 12, 71),
+        elevation: 0,
       ),
       body: BlocBuilder<AiBloc, MessagesState>(
         builder: (context, state) {
